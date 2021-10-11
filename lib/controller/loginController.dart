@@ -1,7 +1,10 @@
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trailer/controller/homeController.dart';
+import 'package:trailer/views/home.dart';
 
 class LoginController extends GetxController{
   HomeController homeController = Get.find<HomeController>(); 
@@ -20,7 +23,7 @@ class LoginController extends GetxController{
   }
 
   void login() async{
-   /*GoogleSignInAccount? googleSignInAccount = await homeController.googleSign.signIn();
+    GoogleSignInAccount? googleSignInAccount = await homeController.googleSign.signIn();
     if (googleSignInAccount == null) {
     } else {
       GoogleSignInAuthentication googleSignInAuthentication =
@@ -28,9 +31,7 @@ class LoginController extends GetxController{
       OAuthCredential oAuthCredential = GoogleAuthProvider.credential(
           accessToken: googleSignInAuthentication.accessToken,
           idToken: googleSignInAuthentication.idToken);
-      await homeController.auth.signInWithCredential(oAuthCredential);
-      print(homeController.auth.currentUser!.uid);
+      await homeController.firebaseAuth.signInWithCredential(oAuthCredential);
     }
-  }*/
   }
 }

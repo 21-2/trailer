@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:get/get.dart';
 import 'package:trailer/controller/loginController.dart';
+import 'package:get/get.dart';
 
 class LogIn extends GetView<LoginController> {
 
@@ -26,7 +26,9 @@ class LogIn extends GetView<LoginController> {
                SignInButton( Buttons.Google, 
                 shape: new RoundedRectangleBorder(borderRadius: new BorderRadius.circular(30.0),),
                 padding: EdgeInsets.all(8),
-                onPressed: () {} 
+                onPressed: () {
+                  controller.login();
+                } 
               ),
               SizedBox(height: 50),
              ],

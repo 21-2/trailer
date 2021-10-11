@@ -12,7 +12,7 @@ class Splash extends StatelessWidget{
     var width = Get.context!.mediaQuerySize.width;
     return AnimatedSplashScreen(
       duration: 3000,
-      splash: Image(image: AssetImage('lib/images/trailerlogo.png'), width: width*0.5),
+      splash: Image(image: AssetImage('lib/images/trailerlogo.png'), width: width),
       nextScreen: LogIn(),
       splashTransition: SplashTransition.fadeTransition,
       pageTransitionType: PageTransitionType.fade,
