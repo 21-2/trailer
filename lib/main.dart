@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget{
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'LittleDrops',
-      theme: ThemeData(),
+      theme: ThemeData(fontFamily: 'SpoqaHans'),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       // home: AnimatedSplashScreen(

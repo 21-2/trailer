@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "220600650075",
+    "project_id": "trailer-6111f",
+    "storage_bucket": "trailer-6111f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220600650075:android:23f42bfc7e30c7f16cf27e",
+        "android_client_info": {
+          "package_name": "com.trailer.trailer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "220600650075-n41kri8ppd7352n4rjvrvob0ahili1st.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOiysz3dtYmxjXjnKZM4YmWPDN-ySN-2M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "220600650075-n41kri8ppd7352n4rjvrvob0ahili1st.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
