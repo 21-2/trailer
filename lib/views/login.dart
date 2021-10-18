@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 class LogIn extends GetView<LoginController> {
 
   var width = Get.context!.mediaQuerySize.width;
-  var height = Get.context!.mediaQuerySize.height;
+  var height = Get.context!.mediaQuerySize.height; 
   Widget build(BuildContext context){
     return Scaffold(
       body: Container(
