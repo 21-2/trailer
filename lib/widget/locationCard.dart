@@ -28,7 +28,7 @@ class _LocationCard extends State<LocationCard>{
                 icon: (favorited
                     ? const Icon(Icons.favorite)
                     : const Icon(Icons.favorite_border)),
-                color: Colors.red,
+                color: Colors.white,
                 
                 onPressed: ()=>{favorited = !favorited},
               ),
@@ -42,17 +42,20 @@ class _LocationCard extends State<LocationCard>{
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Stack(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(5),
-                child: Image(image: AssetImage('lib/images/loc-card-1.png'), height: height*0.147)
-              ),
-               Padding(
-                 padding: const EdgeInsets.fromLTRB(50, 65, 0, 0),
-                 child: heart,
-               ),
-            ]
+          InkWell(
+            child: Stack(
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(5),
+                  child: Image(image: AssetImage('lib/images/loc-card-1.png'), height: height*0.14)
+                ),
+                 Padding(
+                   padding: const EdgeInsets.fromLTRB(50, 65, 0, 0),
+                   child: heart,
+                 ),
+              ]
+            ),
+            onTap: ()=>{Get.toNamed('/details')} //여기에 argument 넣기 
           ),
            SizedBox(height: height*0.02), 
           Text("이스케이프 풀 빌라", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),

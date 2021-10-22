@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
+import 'package:trailer/bindings/detail_binding.dart';
 import 'package:trailer/bindings/login_binding.dart';
 import 'package:trailer/bindings/home_binding.dart';
 import 'package:trailer/bindings/search_binding.dart';
+import 'package:trailer/views/details.dart';
 import 'package:trailer/views/home.dart';
 import 'package:trailer/views/login.dart';
 import 'package:trailer/views/search.dart';
@@ -31,6 +33,12 @@ class AppPages{
             name: _Paths.SEARCH, 
             page: () => SearchView(),
             binding: SearchBinding(),
+          ),
+
+          GetPage(
+            name: _Paths.DETAIL,
+            page: () => DetailView(),
+            binding: DetailBinding(),
           )
 
   ];
