@@ -17,7 +17,7 @@ class HomeView extends GetView<HomeController> {
       SingleChildScrollView(
         child: Column(
         children: [
-          SizedBox(height: height * 0.05),
+          SizedBox(height: height * 0.03),
           Row(
             children: [
               Image(

@@ -10,10 +10,21 @@ class LocationCard extends StatefulWidget{
 class _LocationCard extends State<LocationCard>{
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
+  var favorited = false;
+
+   void _toggleFavorite() {
+    setState(() {
+      if (favorited) {
+       
+        favorited = false;
+      } else {
+        favorited = true;
+      }
+    });
+  }
   @override  
   Widget build(BuildContext context){
 
-    var favorited = false;
 
     Widget heart = Container(
         padding: const EdgeInsets.all(0),
@@ -26,11 +37,9 @@ class _LocationCard extends State<LocationCard>{
                 padding: const EdgeInsets.all(0),
                 alignment: Alignment.centerRight,
                 icon: (favorited
-                    ? const Icon(Icons.favorite)
-                    : const Icon(Icons.favorite_border)),
+                    ? Icon(Icons.favorite, color: Color(0xffFE4D68)) :  Icon(Icons.favorite_border)), 
                 color: Colors.white,
-                
-                onPressed: ()=>{favorited = !favorited},
+                onPressed: ()=>{_toggleFavorite()},
               ),
             ),
           ],
@@ -55,7 +64,7 @@ class _LocationCard extends State<LocationCard>{
                  ),
               ]
             ),
-            onTap: ()=>{Get.toNamed('/details')} //여기에 argument 넣기 
+            onTap: ()=>{Get.toNamed('/searchresults')} //여기에 argument 넣기 
           ),
            SizedBox(height: height*0.02), 
           Text("이스케이프 풀 빌라", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
