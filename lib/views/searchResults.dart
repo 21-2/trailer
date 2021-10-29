@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:trailer/controller/searchController.dart';
 import 'package:trailer/widget/searchlocationCard.dart';
+import 'package:trailer/widget/trailist.dart';
 
 class SearchResults extends GetView<SearchController> {
   final _searchBar = TextEditingController();
@@ -122,7 +123,22 @@ Widget firstTab(){
 }
 
 Widget secondTab(){
-  return Column(children: [
-
-  ],);
+  return SingleChildScrollView(
+    child: 
+    Padding(
+      padding: const EdgeInsets.fromLTRB(15,30,15,0),
+      child: Column(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TrailistCard(),
+              TrailistCard(),
+              TrailistCard(),
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
 }
