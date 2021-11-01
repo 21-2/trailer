@@ -7,6 +7,7 @@ import 'package:trailer/bindings/search_results_binding.dart';
 import 'package:trailer/views/details.dart';
 import 'package:trailer/views/home.dart';
 import 'package:trailer/views/login.dart';
+import 'package:trailer/views/profile.dart';
 import 'package:trailer/views/search.dart';
 import 'package:trailer/views/searchResults.dart';
 part 'app_routes.dart';
@@ -47,6 +48,12 @@ class AppPages{
             name: _Paths.SEARCHRESULTS,
             page: () => SearchResults(),
             binding: SearchResultsBinding(), 
+          ),
+
+          GetPage(
+            name: _Paths.PROFILE,
+            page: ()=> ProfileView(),
+            binding: HomeBinding(),
           )
 
   ];

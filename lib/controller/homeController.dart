@@ -49,4 +49,9 @@ class HomeController extends GetxController{
       Get.offAllNamed(Routes.LOGIN);
     }
   }
+
+  Future<void> signOut() async {
+   await FirebaseAuth.instance.signOut();
+   googleSign.signOut();
+  }
 }

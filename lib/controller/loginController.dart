@@ -65,6 +65,5 @@ void addUserToTrailer() async{
         .doc(userModel.id)
         .get()
         .then((doc) => UserModel.fromSnapshot(doc));
-    print('usermodel initialized');
   }
 }

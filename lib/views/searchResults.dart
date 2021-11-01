@@ -51,7 +51,6 @@ class SearchResults extends GetView<SearchController> {
                     SizedBox(
                       width: width * 0.7,
                       child: TextField(
-                        autofocus: true,
                         expands: true,
                         minLines: null,
                         maxLines: null,

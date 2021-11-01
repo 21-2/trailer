@@ -64,7 +64,7 @@ class _LocationCard extends State<LocationCard>{
                  ),
               ]
             ),
-            onTap: ()=>{Get.toNamed('/searchresults')} //여기에 argument 넣기 
+            onTap: ()=>{Get.toNamed('/profile')} //여기에 argument 넣기 
           ),
            SizedBox(height: height*0.02), 
           Text("이스케이프 풀 빌라", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
