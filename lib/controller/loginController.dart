@@ -9,7 +9,10 @@ import 'package:trailer/model/User.dart';
 class LoginController extends GetxController{
 
   HomeController homeController = Get.find<HomeController>(); 
-
+  RxBool isLoggedIn = false.obs;
+  bool sign() {
+    return isLoggedIn.value;
+  }
   late UserModel _userModel;
   UserModel get userModel => _userModel;
   set userModel (UserModel userModel) {
@@ -45,6 +48,7 @@ class LoginController extends GetxController{
       await homeController.firebaseAuth.signInWithCredential(oAuthCredential);
       addUserToTrailer();
       _intializeUserModel(user.uid);
+      isLoggedIn.value = true;
     }
   }
 

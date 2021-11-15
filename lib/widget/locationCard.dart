@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trailer/views/favorites.dart';
 
 class LocationCard extends StatefulWidget{
 
@@ -64,7 +65,10 @@ class _LocationCard extends State<LocationCard>{
                  ),
               ]
             ),
-            onTap: ()=>{Get.toNamed('/profile')} //여기에 argument 넣기 
+            onTap: ()=>{
+              Get.to(Favorites())
+             // Get.toNamed('/details')
+              } //여기에 argument 넣기 
           ),
            SizedBox(height: height*0.02), 
           Text("이스케이프 풀 빌라", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
