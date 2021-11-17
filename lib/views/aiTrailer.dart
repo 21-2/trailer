@@ -36,20 +36,9 @@ class AiTrailer extends GetView<AiController> {
                 Column(
                   children: [
                     IconButton(icon: Image.asset('lib/images/ai-add-icon.png'), iconSize: height*0.3, color: Color(0xff8B8B8B), onPressed:(){} ),
-                    ElevatedButton(onPressed: (){}, child: Ink(
-                        decoration: BoxDecoration(
-                            gradient: LinearGradient(colors: [Color(0xfffc96a0), Color(0xfffa9d90), Color(0xfff9a082),],),
-                            borderRadius: BorderRadius.circular(30.0)
-                        ),
-                        child: Container())
-                        )
-                  ],
-                ),
-              ),
-
-                  /*ElevatedButton(
+                   ElevatedButton(
                       style: ButtonStyle(
-                        fixedSize: MaterialStateProperty.all(Size(width*0.7, height*0.05)),
+                        fixedSize: MaterialStateProperty.all(Size(width*0.8, height*0.05)),
                         backgroundColor: MaterialStateProperty.all(Colors.transparent),
                         foregroundColor: MaterialStateProperty.all(Colors.transparent),
                         shadowColor: MaterialStateProperty.all(Colors.transparent),
@@ -66,9 +55,9 @@ class AiTrailer extends GetView<AiController> {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(Icons.edit, color: Colors.white, size: 20),
+                          
                               Text(
-                                "리뷰 작성하기",
+                                "검색하기",
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     color: Colors.white
@@ -78,7 +67,15 @@ class AiTrailer extends GetView<AiController> {
                           ),
                         ),
                       ),
-                    ),*/
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: height*0.05),
+              Text("Trailer Cam 을 이렇게 사용해보세요!", style: TextStyle(fontWeight: FontWeight.w500)) ,
+              SizedBox(height: height*0.03),
+              Image(image: AssetImage('lib/images/ai-tips.png'),
+                    width: width * 0.9),
            ],
          ),
        ),

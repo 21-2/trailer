@@ -107,7 +107,7 @@ class HomeView extends GetView<HomeController> {
               RichText(
                 text: TextSpan(children: <TextSpan>[
                   TextSpan(
-                      text: "초록초록 여행 맛집 ",
+                      text: "제주도의 초록 여행 맛집 ",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
@@ -201,18 +201,18 @@ class HomeView extends GetView<HomeController> {
               RichText(
                 text: TextSpan(children: <TextSpan>[
                   TextSpan(
-                      text: "여름이었다... ",
+                      text: "윈터 원더랜드",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                           color: Colors.black)),
                     TextSpan(
-                      text: '✨',
+                      text: ' ❄️',
                       style: TextStyle(fontSize: 23, fontFamily: 'Roboto'))
                 ]),
               ),
               SizedBox(height: height * 0.01),
-              Text("를 절로 외치게 되는 선셋 명소들 ",
+              Text("엘사 뺨치는 국내 겨울 명장소",
                   style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12)),
               SizedBox(height: height * 0.02),
               Row(

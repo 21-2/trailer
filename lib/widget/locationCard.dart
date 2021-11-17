@@ -66,8 +66,7 @@ class _LocationCard extends State<LocationCard>{
               ]
             ),
             onTap: ()=>{
-              Get.to(Favorites())
-             // Get.toNamed('/details')
+              Get.toNamed('/details')
               } //여기에 argument 넣기 
           ),
            SizedBox(height: height*0.02), 
