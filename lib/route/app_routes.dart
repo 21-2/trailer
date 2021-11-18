@@ -23,5 +23,5 @@ abstract class _Paths {
   static const PROFILE = '/profile';
   static const FAVORITES = '/favorites';
   static const DASHBOARD = '/dashboard';
-  static const TRAILIST = '/trailistList';
+  static const TRAILIST = '/trailist';
 }
