@@ -125,39 +125,44 @@ class HomeView extends GetView<HomeController> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Stack(children: [
-                                ClipRRect(
-                                    borderRadius: BorderRadius.circular(8),
-                                    child: Image(
-                                        image: AssetImage(
-                                            'lib/images/trailist-card-1.png'),
-                                        width: width * 0.6)
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(8, 75, 0, 5),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text("2박 3일",
-                                          style: TextStyle(color: Colors.white)),
-                                      SizedBox(height: height * 0.005),
-                                      Row(children: [
-                                        Text("떠오르는 핫플 : 함안 |",
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 13,
-                                                color: Colors.white)),
-                                        SizedBox(width: width * 0.015),
-                                        Text('라엘천재',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w400,
-                                                fontSize: 12,
-                                                color: Colors.white)),
-                                      ])
-                                    ],
+                              InkWell(
+                                onTap: ()=>{
+                                Get.toNamed('/trailistList')
+                                },
+                                child: Stack(children: [
+                                  ClipRRect(
+                                      borderRadius: BorderRadius.circular(8),
+                                      child: Image(
+                                          image: AssetImage(
+                                              'lib/images/trailist-card-1.png'),
+                                          width: width * 0.6)
                                   ),
-                                ),
-                              ]),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(8, 75, 0, 5),
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text("2박 3일",
+                                            style: TextStyle(color: Colors.white)),
+                                        SizedBox(height: height * 0.005),
+                                        Row(children: [
+                                          Text("떠오르는 핫플 : 함안 |",
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w700,
+                                                  fontSize: 13,
+                                                  color: Colors.white)),
+                                          SizedBox(width: width * 0.015),
+                                          Text('라엘천재',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.w400,
+                                                  fontSize: 12,
+                                                  color: Colors.white)),
+                                        ])
+                                      ],
+                                    ),
+                                  ),
+                                ]),
+                              ),
                               SizedBox(width:width*0.03),
                               Stack(children: [
                                 ClipRRect(
@@ -223,6 +228,7 @@ class HomeView extends GetView<HomeController> {
                   LocationCard(),
                 ],
               ),
+              SizedBox(height: height * 0.02),
             ]),
           )
         ],

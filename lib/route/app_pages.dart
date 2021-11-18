@@ -6,6 +6,7 @@ import 'package:trailer/bindings/login_binding.dart';
 import 'package:trailer/bindings/home_binding.dart';
 import 'package:trailer/bindings/search_binding.dart';
 import 'package:trailer/bindings/search_results_binding.dart';
+import 'package:trailer/bindings/trailistBindings.dart';
 import 'package:trailer/views/dashboard.dart';
 import 'package:trailer/views/details.dart';
 import 'package:trailer/views/favorites.dart';
@@ -14,6 +15,7 @@ import 'package:trailer/views/login.dart';
 import 'package:trailer/views/profile.dart';
 import 'package:trailer/views/search.dart';
 import 'package:trailer/views/searchResults.dart';
+import 'package:trailer/views/trailistList.dart';
 part 'app_routes.dart';
 
 
@@ -71,6 +73,11 @@ class AppPages{
           page: () => DashboardPage(),
           binding: DashboardBinding(),
         ),
+        GetPage(
+          name: _Paths.TRAILIST,
+          page: ()=> TrailistList(),
+          binding: TrailistBinding(),
+        )
   ];
 
 }

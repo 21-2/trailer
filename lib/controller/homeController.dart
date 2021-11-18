@@ -1,22 +1,27 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trailer/controller/loginController.dart';
+import 'package:trailer/model/Locations.dart';
 import 'package:trailer/route/app_pages.dart';
 import 'package:trailer/model/User.dart';
 
 class HomeController extends GetxController{
 
-
+  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
   late GoogleSignIn googleSign;
   var _isSignIn = false.obs;
   get isSignIn => _isSignIn;
-  FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+
 
   late UserModel userModel;
   late User _user;
   User get user => _user;
+
+ List<DocumentSnapshot> locations = [];
 
   @override 
   void onInit() async{
@@ -55,5 +60,6 @@ class HomeController extends GetxController{
    googleSign.signOut();
   }
 
-  
+ Future<void> initializeLocationCards() async{
+ }
 }

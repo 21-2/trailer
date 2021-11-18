@@ -35,7 +35,7 @@ class _SearchLocationCard extends State<SearchLocationCard>{
                   borderRadius: BorderRadius.circular(5),
                   child: Image(image: AssetImage('lib/images/loc-card-1.png'), height: height*0.14)
                 ),
-            onTap: ()=>{Get.toNamed('/searchresults')} //여기에 argument 넣기 
+            onTap: ()=>{Get.toNamed('/details')} //여기에 argument 넣기 
           ),
           SizedBox(height: height*0.02), 
           Text("이스케이프 풀 빌라", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
