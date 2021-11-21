@@ -1,8 +1,9 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:trailer/controller/favoritesController.dart';
+import 'package:trailer/widget/myLocationCard.dart';
 import 'package:trailer/widget/myTrailist.dart';
-import 'package:trailer/widget/searchlocationCard.dart';
+import 'package:trailer/widget/searchLocationCard.dart';
 import 'package:trailer/widget/trailist.dart';
 
 class Favorites extends GetView<FavoritesController> {
