@@ -1,0 +1,7 @@
+{
+  "name": "littledrops",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

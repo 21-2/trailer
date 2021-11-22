@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trailer/controller/homeController.dart';
+import 'package:trailer/model/Locations.dart';
 import 'package:trailer/views/favorites.dart';
 
 class LocationCard extends StatefulWidget{
@@ -9,6 +12,8 @@ class LocationCard extends StatefulWidget{
 }
 
 class _LocationCard extends State<LocationCard>{
+
+  late Location currentLocation;
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
   var favorited = false;
@@ -23,6 +28,15 @@ class _LocationCard extends State<LocationCard>{
       }
     });
   }
+
+  Future<void>?setLocation() async{
+        currentLocation = await FirebaseFirestore.instance
+        .collection('Location')
+        .doc('2qJnz6W3sbBkBkkb27xJ')
+        .get()
+        .then((doc) => Location.fromSnapshot(doc));
+  }
+  
   @override  
   Widget build(BuildContext context){
 
@@ -65,8 +79,9 @@ class _LocationCard extends State<LocationCard>{
                  ),
               ]
             ),
-            onTap: ()=>{
-              Get.toNamed('/details')
+            onTap: (){
+              Get.toNamed('/details');
+            
               } //여기에 argument 넣기 
           ),
            SizedBox(height: height*0.02), 

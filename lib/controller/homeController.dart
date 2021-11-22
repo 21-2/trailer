@@ -21,13 +21,15 @@ class HomeController extends GetxController{
   late User _user;
   User get user => _user;
 
- List<DocumentSnapshot> locations = [];
+  List<Location> locationList = [];
+  Map<String, Location> locationMap ={};
 
   @override 
   void onInit() async{
     super.onInit();
     LoginController loginController = Get.find<LoginController>();
     userModel = loginController.userModel;
+    await setLocations();
   }
 
   @override
@@ -38,7 +40,6 @@ class HomeController extends GetxController{
     firebaseAuth.authStateChanges().listen((event){
       _isSignIn.value = event != null;
     });
-
     super.onReady();
   }
 
@@ -60,6 +61,13 @@ class HomeController extends GetxController{
    googleSign.signOut();
   }
 
- Future<void> initializeLocationCards() async{
+ Future<void>? setLocations() async{
+   await FirebaseFirestore.instance.collection('Location').get().then((QuerySnapshot snapshot){
+     snapshot.docs.forEach((doc){
+       Location tempLocation = Location.fromSnapshot(doc);
+       locationList.add(tempLocation);
+       locationMap.addAll({tempLocation.locationId! : tempLocation});
+     });
+   });
  }
 }

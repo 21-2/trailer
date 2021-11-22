@@ -56,7 +56,7 @@ void addUserToTrailer() async{
     user = homeController.user;
     try{
       await firebaseFirestore.collection("Users").doc(user.uid).set(
-        {"name": user.displayName, "id": user.uid, "email": user.email, }
+        {"name": user.displayName, "id": user.uid, "email": user.email, "recentSearch" : []}
       );
     } catch(e){
       print(e);

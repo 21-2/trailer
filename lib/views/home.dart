@@ -126,8 +126,8 @@ class HomeView extends GetView<HomeController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               InkWell(
-                                onTap: ()=>{
-                                Get.toNamed('/trailistList')
+                                onTap: (){
+                                Get.toNamed('/trailistList');
                                 },
                                 child: Stack(children: [
                                   ClipRRect(
