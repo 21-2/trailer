@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trailer/controller/trailistController.dart';
+import 'package:trailer/widget/trailier.dart';
 
 class SetTrailist extends GetView<TrailistController>{
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
+
+  String date='2021.10.10 (SUN)';
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +28,7 @@ class SetTrailist extends GetView<TrailistController>{
                     Row(
                       children: [
                         Text(
-                          '제주도 (Fe',
+                          '여행 이름',
                           style: TextStyle(
                               fontWeight: FontWeight.w700,
                               fontSize: 20,
@@ -36,10 +39,10 @@ class SetTrailist extends GetView<TrailistController>{
                     ),
                   TextField(
                     decoration: InputDecoration(
-                      labelText: 'Input',
+                      labelText: '제주도 (Feat. 자연)',
                     )
                   ),
-                    SizedBox(height: 20),
+                    SizedBox(height: 30),
                     Row(
                       children: [
                         Text(
@@ -57,6 +60,9 @@ class SetTrailist extends GetView<TrailistController>{
                           labelText: '이메일을 입력하세요',
                         )
                     ),
+                    TrailerCard(),
+                    TrailerCard(),
+                    TrailerCard(),
                     SizedBox(
                       width: 20,
                       child: Column(
