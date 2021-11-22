@@ -6,6 +6,9 @@ class TrailistLocationListCard extends StatefulWidget {
   _TrailistLocationListCard createState() => _TrailistLocationListCard();
 }
 
+String date = "2021.11.18 (THU)";
+String time = "9:00 AM";
+
 class _TrailistLocationListCard extends State<TrailistLocationListCard> {
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
@@ -80,7 +83,7 @@ void FlutterDialog(BuildContext context) {
           //Dialog Main Title
           title: Column(
             children: <Widget>[
-              Text("일정 수정"),
+              Text("이스케이프 풀 빌라"),
             ],
           ),
           //
@@ -89,7 +92,26 @@ void FlutterDialog(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                "Dialog Content",
+                "장소: 포항시 남구 구룡포",
+                  style: TextStyle(fontSize: 13)
+              ),
+              Text(date + ' ' + time,
+                  style: TextStyle(fontSize: 13)),
+              Row(
+                children: [
+                  FlatButton(
+                    child: Text('날짜 재설정'),
+                    onPressed: (){
+                      showDatePickerPop(context);
+                    }
+                  ),
+                  FlatButton(
+                      child: Text('시간 재설정'),
+                      onPressed: (){
+                        showTimePickerPop(context);
+                      }
+                  )
+                ],
               ),
             ],
           ),
@@ -110,4 +132,43 @@ void FlutterDialog(BuildContext context) {
         );
       });
 }
+
+void showDatePickerPop(context) {
+  Future<DateTime?> selectedDate = showDatePicker(
+    context: context,
+    initialDate: DateTime.now(), //초기값
+    firstDate: DateTime(2020), //시작일
+    lastDate: DateTime(2022), //마지막일
+    builder: (BuildContext context, Widget? child) {
+      return Theme(
+        data: ThemeData.dark(), //다크 테마
+        child: child!,
+      );
+    },
+  );
+
+  selectedDate.then((dateTime) {
+    /*setState(() {
+        date = dateTime.toString();
+        date = date.split(" ")[0];
+        print(date);
+      });*/
+  });
+}
+
+void showTimePickerPop(context) {
+  Future<TimeOfDay?> selectedTime = showTimePicker(
+    context: context,
+    initialTime: TimeOfDay.now(),
+  );
+  selectedTime.then((timeOfDay) {
+    /*Fluttertoast.showToast(
+      msg: timeOfDay.toString(),
+      toastLength: Toast.LENGTH_LONG,
+      //gravity: ToastGravity.CENTER,  //위치(default 는 아래)
+    );*/
+  });
+}
+
+
 
