@@ -15,6 +15,7 @@ import 'package:trailer/views/login.dart';
 import 'package:trailer/views/profile.dart';
 import 'package:trailer/views/search.dart';
 import 'package:trailer/views/searchResults.dart';
+import 'package:trailer/views/setTrailist.dart';
 import 'package:trailer/views/trailist.dart';
 part 'app_routes.dart';
 
@@ -78,6 +79,12 @@ class AppPages{
             page: () => TrailistView(),
             binding: TrailistBinding(),
           ),
+          GetPage(
+            name: _Paths.SETTRAILIST,
+            page: () => SetTrailist(),
+            binding: TrailistBinding(), //trailist binding 같이사용!?
+          ),
+
   ];
 
 }
