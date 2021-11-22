@@ -12,6 +12,7 @@ abstract class Routes{
   static const FAVORITES = _Paths.FAVORITES;
   static const DASHBOARD = _Paths.DASHBOARD;
   static const TRAILIST = _Paths.TRAILIST;
+  static const SETTRAILIST = _Paths.SETTRAILIST;
 }
 
 abstract class _Paths {
@@ -24,4 +25,5 @@ abstract class _Paths {
   static const FAVORITES = '/favorites';
   static const DASHBOARD = '/dashboard';
   static const TRAILIST = '/trailist';
+  static const SETTRAILIST = '/setTrailist';
 }

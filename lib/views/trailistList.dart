@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:trailer/controller/trailistController.dart';
 
-class TrailistList extends GetView<TrailistController>{
+class TrailistList extends GetView<TrailistController>{ //이건 사용안되고있음?!
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
    Widget build(BuildContext context) {

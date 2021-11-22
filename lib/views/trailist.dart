@@ -1,13 +1,14 @@
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:trailer/controller/detailController.dart';
+import 'package:trailer/controller/trailistController.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:trailer/widget/locationCard.dart';
 import 'package:trailer/widget/review.dart';
 import 'package:trailer/widget/trailistLocationListCard.dart';
 
-class TrailistView extends GetView<DetailController> {
+class TrailistView extends GetView<TrailistController> {
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
 
@@ -47,18 +48,13 @@ class TrailistView extends GetView<DetailController> {
               Positioned(
                   bottom: 300,
                   left: 330,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      IconButton(
-                          icon: Icon(Icons.edit, color: Colors.white),
-                          onPressed: () {})
-                    ],
+                  child: IconButton(
+                      icon: Icon(Icons.edit, color: Colors.white),
+                      onPressed: () => {Get.toNamed('/setTrailist')}
                   )),
               Positioned(
                   bottom: 10,
-                  left: 15,
+                  left: 20,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -111,7 +107,7 @@ class TrailistView extends GetView<DetailController> {
                     children: [
                       IconButton(
                           icon: Icon(Icons.map,
-                              color: Color.fromRGBO(254, 113, 117, 100),
+                              color: Colors.white,
                               size: 30.0),
                           onPressed: () {})
                     ],
@@ -129,47 +125,53 @@ class TrailistView extends GetView<DetailController> {
                             child: Padding(
                                 padding:
                                     const EdgeInsets.fromLTRB(15, 10, 15, 0),
-                                child: Column(children: [
-                                  Row(children: [
-                                    Icon(Icons.location_pin),
-                                    Text('6곳'),
-                                  ]),
-                                  Text(
-                                    '18 Thursday',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 20,
-                                        color:
-                                            Color.fromRGBO(254, 113, 117, 100)),
-                                  ),
-                                  TrailistLocationListCard(),
-                                  TrailistLocationListCard(),
-                                  SizedBox(height: 20),
-                                  Text(
-                                    '19 Friday',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 20,
-                                        color:
-                                            Color.fromRGBO(254, 113, 117, 100)),
-                                  ),
-                                  TrailistLocationListCard(),
-                                  TrailistLocationListCard(),
-                                  SizedBox(height: 20),
-                                  Text(
-                                    '20 Saturday',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w700,
-                                        fontSize: 20,
-                                        color:
-                                            Color.fromRGBO(254, 113, 117, 100)),
-                                  ),
-                                  TrailistLocationListCard(),
-                                  TrailistLocationListCard(),
-                                ])))
+                                child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(children: [
+                                        Icon(Icons.location_pin),
+                                        Text('6곳'),
+                                      ]),
+                                      SizedBox(height: 20),
+                                      Text(
+                                        '18 Thursday',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20,
+                                            color: Color.fromRGBO(
+                                                254, 113, 117, 100)),
+                                      ),
+                                      TrailistLocationListCard(),
+                                      TrailistLocationListCard(),
+                                      SizedBox(height: 20),
+                                      Text(
+                                        '19 Friday',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20,
+                                            color: Color.fromRGBO(
+                                                254, 113, 117, 100)),
+                                      ),
+                                      TrailistLocationListCard(),
+                                      TrailistLocationListCard(),
+                                      SizedBox(height: 20),
+                                      Text(
+                                        '20 Saturday',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20,
+                                            color: Color.fromRGBO(
+                                                254, 113, 117, 100)),
+                                      ),
+                                      TrailistLocationListCard(),
+                                      TrailistLocationListCard(),
+                                    ])))
                       ]))),
         ],
       ),
     ));
   }
 }
+
