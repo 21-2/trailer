@@ -24,6 +24,10 @@ class HomeController extends GetxController{
   List<Location> locationList = [];
   Map<String, Location> locationMap ={};
 
+  List<String> firstRowLocations = ["OqagRBhErUyfjqt3SaH7", "ShW5Odw0EkirlgifPAzP", "2qJnz6W3sbBkBkkb27xJ"];
+  List<String> secondRowLocations = ["p13gnkhKpjfz34l6cLT0", "NJMR1STvTN1TbFbEQNVf", "IsmOHmhroY4uSVuiVDqA"];
+  List<String> firstRowTrailers = ["R3nTf12LPo5pZrmNqg7t", "AEotD60el35tWOaPTdhv"];
+
   @override 
   void onInit() async{
     super.onInit();
@@ -62,7 +66,7 @@ class HomeController extends GetxController{
   }
 
  Future<void>? setLocations() async{
-   await FirebaseFirestore.instance.collection('Location').get().then((QuerySnapshot snapshot){
+   await firestore.collection('Location').get().then((QuerySnapshot snapshot){
      snapshot.docs.forEach((doc){
        Location tempLocation = Location.fromSnapshot(doc);
        locationList.add(tempLocation);
@@ -70,4 +74,11 @@ class HomeController extends GetxController{
      });
    });
  }
+
+ void printLocation(){
+   print(locationList);
+ }
+Future<void>? setTrailist() async{
+      
+}
 }

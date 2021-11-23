@@ -7,6 +7,9 @@ import 'package:trailer/views/favorites.dart';
 
 class LocationCard extends StatefulWidget{
 
+  String documentID;
+  LocationCard({required this.documentID});
+
   @override 
   _LocationCard createState() => _LocationCard();
 }
@@ -18,6 +21,12 @@ class _LocationCard extends State<LocationCard>{
   var height = Get.context!.mediaQuerySize.height;
   var favorited = false;
 
+  String clippedAddress(String address){
+    if (address.length> 11){
+      return address.substring(5,15);
+    }
+    return address;
+  }
    void _toggleFavorite() {
     setState(() {
       if (favorited) {
@@ -32,7 +41,7 @@ class _LocationCard extends State<LocationCard>{
   Future<void>?setLocation() async{
         currentLocation = await FirebaseFirestore.instance
         .collection('Location')
-        .doc('2qJnz6W3sbBkBkkb27xJ')
+        .doc(widget.documentID)
         .get()
         .then((doc) => Location.fromSnapshot(doc));
   }
@@ -40,7 +49,7 @@ class _LocationCard extends State<LocationCard>{
   @override  
   Widget build(BuildContext context){
 
-
+    setLocation();
     Widget heart = Container(
         padding: const EdgeInsets.all(0),
         child: Row(
@@ -70,8 +79,8 @@ class _LocationCard extends State<LocationCard>{
             child: Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(5),
-                  child: Image(image: AssetImage('lib/images/loc-card-1.png'), height: height*0.14)
+                  borderRadius: BorderRadius.circular(7),
+                  child: Image.network(currentLocation.img!, height: height*0.14, width:height*0.14, fit: BoxFit.fill,)
                 ),
                  Padding(
                    padding: const EdgeInsets.fromLTRB(50, 65, 0, 0),
@@ -80,14 +89,15 @@ class _LocationCard extends State<LocationCard>{
               ]
             ),
             onTap: (){
+              
               Get.toNamed('/details');
             
               } //여기에 argument 넣기 
           ),
-           SizedBox(height: height*0.02), 
-          Text("이스케이프 풀 빌라", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
+          SizedBox(height: height*0.02), 
+          Text(currentLocation.locationName!, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
           SizedBox(height: height*0.008), 
-          Text('포항시 남구 구룡포', style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12)),
+          Text(clippedAddress(currentLocation.address!), style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12), overflow: TextOverflow.clip),
         ],
         
       ),

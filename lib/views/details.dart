@@ -237,9 +237,9 @@ class DetailView extends GetView<DetailController> {
                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
+                   /* LocationCard(),
                     LocationCard(),
-                    LocationCard(),
-                    LocationCard(),
+                    LocationCard(),*/
                   ],
                 ),
             ],
