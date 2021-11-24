@@ -84,8 +84,10 @@ class HomeController extends GetxController{
   update();
  }
 
- void printLocation(){
-   setLocations();
-   print(trailistList);
+ String TrailistImage(Trailist trailist){
+   var temp = firestore.collection("Location").doc(trailist.locations![0]["locationId"]).get();
+  // Location tempLocation = Location.fromSnapshot(temp);
+
+   return "";
  }
 }

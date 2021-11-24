@@ -12,6 +12,7 @@ class HomeView extends GetView<HomeController> {
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
   Widget build(BuildContext context) {
+    
     return 
     FutureBuilder(
       future: controller.setLocations(),
@@ -131,8 +132,7 @@ class HomeView extends GetView<HomeController> {
                               children: [
                                 InkWell(
                                   onTap: (){
-                                 // Get.toNamed('/trailistList');
-                                 controller.printLocation();
+                                   Get.toNamed('/trailistList');
                                   },
                                   child: Stack(children: [
                                     ClipRRect(
@@ -147,11 +147,11 @@ class HomeView extends GetView<HomeController> {
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text("2박 3일",
+                                          Text("${controller.TrailistImage(controller.trailistList[0])}",
                                               style: TextStyle(color: Colors.white)),
                                           SizedBox(height: height * 0.005),
                                           Row(children: [
-                                            Text("떠오르는 핫플 : 함안 |",
+                                            Text("${controller.trailistList[0].trailistName} |",
                                                 style: TextStyle(
                                                     fontWeight: FontWeight.w700,
                                                     fontSize: 13,
@@ -186,13 +186,13 @@ class HomeView extends GetView<HomeController> {
                                             style: TextStyle(color: Colors.white)),
                                         SizedBox(height: height * 0.005),
                                         Row(children: [
-                                          Text("떠오르는 핫플 : 함안 |",
+                                          Text("${controller.trailistList[1].trailistName} |",
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w700,
                                                   fontSize: 13,
                                                   color: Colors.white)),
                                           SizedBox(width: width * 0.015),
-                                          Text('라엘천재',
+                                          Text('gracenho829',
                                               style: TextStyle(
                                                   fontWeight: FontWeight.w400,
                                                   fontSize: 12,

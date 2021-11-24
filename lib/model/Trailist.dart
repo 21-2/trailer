@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Trailist {
   String ? trailistName;
   String? trailistId;
-  List<Map<dynamic, dynamic>>? locations;
+  List<dynamic>? locations;
   List<dynamic>? participants;
   Map<dynamic, dynamic>? period;
 
