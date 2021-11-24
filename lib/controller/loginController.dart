@@ -54,13 +54,10 @@ class LoginController extends GetxController{
 
 void addUserToTrailer() async{
     user = homeController.user;
-    try{
-      await firebaseFirestore.collection("Users").doc(user.uid).set(
-        {"name": user.displayName, "id": user.uid, "email": user.email, "recentSearch" : []}
+    await firebaseFirestore.collection("Users").doc(user.uid).set(
+        {"name": user.displayName, "id": user.uid, "email": user.email, "recentSearch" : []}, SetOptions(merge: true)
       );
-    } catch(e){
-      print(e);
-    }
+  
   }
 
   _intializeUserModel(String uid) async{

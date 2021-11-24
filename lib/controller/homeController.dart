@@ -5,6 +5,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:trailer/controller/loginController.dart';
 import 'package:trailer/model/Locations.dart';
+import 'package:trailer/model/Trailist.dart';
 import 'package:trailer/route/app_pages.dart';
 import 'package:trailer/model/User.dart';
 
@@ -22,18 +23,18 @@ class HomeController extends GetxController{
   User get user => _user;
 
   List<Location> locationList = [];
-  Map<String, Location> locationMap ={};
+  RxList<Trailist> trailistList = <Trailist>[].obs;
 
   List<String> firstRowLocations = ["OqagRBhErUyfjqt3SaH7", "ShW5Odw0EkirlgifPAzP", "2qJnz6W3sbBkBkkb27xJ"];
   List<String> secondRowLocations = ["p13gnkhKpjfz34l6cLT0", "NJMR1STvTN1TbFbEQNVf", "IsmOHmhroY4uSVuiVDqA"];
-  List<String> firstRowTrailers = ["R3nTf12LPo5pZrmNqg7t", "AEotD60el35tWOaPTdhv"];
+  List<Trailist> firstRowTrailers = [];
 
   @override 
   void onInit() async{
-    super.onInit();
     LoginController loginController = Get.find<LoginController>();
     userModel = loginController.userModel;
     await setLocations();
+    super.onInit();
   }
 
   @override
@@ -70,15 +71,21 @@ class HomeController extends GetxController{
      snapshot.docs.forEach((doc){
        Location tempLocation = Location.fromSnapshot(doc);
        locationList.add(tempLocation);
-       locationMap.addAll({tempLocation.locationId! : tempLocation});
      });
    });
+
+   await firestore.collection('Trailist').get().then((QuerySnapshot snapshot){
+     snapshot.docs.forEach((doc){
+      Trailist tempTrailist = Trailist.fromSnapshot(doc);
+      if (tempTrailist.trailistId == "R3nTf12LPo5pZrmNqg7t" || tempTrailist.trailistId == "AEotD60el35tWOaPTdhv")
+       trailistList.add(tempTrailist);
+     });
+   });
+  update();
  }
 
  void printLocation(){
-   print(locationList);
+   setLocations();
+   print(trailistList);
  }
-Future<void>? setTrailist() async{
-      
-}
 }

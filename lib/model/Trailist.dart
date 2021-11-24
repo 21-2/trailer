@@ -3,14 +3,16 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Trailist {
   String ? trailistName;
   String? trailistId;
-  late List<Map<String, dynamic>> locations;
-  List<dynamic>? participants= [];
+  List<Map<dynamic, dynamic>>? locations;
+  List<dynamic>? participants;
+  Map<dynamic, dynamic>? period;
 
   Trailist({
-    required this.trailistId,
-    required this.trailistName,  
-    required this.locations,
-    required this.participants, 
+    this.trailistId,
+    this.trailistName,  
+    this.locations,
+    this.participants, 
+    this.period,
   });
 
   Map<String,dynamic> toMap(){
@@ -19,6 +21,7 @@ class Trailist {
       'trailistName': trailistName,
       'participants': participants,
       'locations' : locations,
+      'period' : period,
     };
   }
 
@@ -27,6 +30,7 @@ class Trailist {
     trailistName = (snapshot.data() as dynamic)['trailistName'];
     participants = (snapshot.data() as dynamic)['participants'];
     locations = (snapshot.data() as dynamic)['locations'];
+    period = (snapshot.data() as dynamic)['period'];
 
   }
 }
