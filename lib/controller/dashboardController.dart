@@ -5,7 +5,7 @@ import 'package:trailer/controller/homeController.dart';
 import 'package:trailer/controller/loginController.dart';
 
 class DashboardController extends GetxController{
-  HomeController homeController = Get.find<HomeController>(); 
+  HomeController homeController = Get.find<HomeController>();
   LoginController loginController = Get.find<LoginController>();
   FavoritesController favoritesController = Get.find<FavoritesController>();
   AiController aiController = Get.find<AiController>();
@@ -15,7 +15,7 @@ class DashboardController extends GetxController{
     tabIndex = index;
     update();
   }
-  @override 
+  @override
   void onInit() async{
     super.onInit();
   }
@@ -25,7 +25,7 @@ class DashboardController extends GetxController{
     super.onReady();
   }
 
-  @override 
+  @override
   void onClose(){
   }
 
