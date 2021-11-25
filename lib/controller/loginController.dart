@@ -57,6 +57,7 @@ void addUserToTrailer() async{
     await firebaseFirestore.collection("Users").doc(user.uid).set(
         {"name": user.displayName, "id": user.uid, "email": user.email, "recentSearch" : []}, SetOptions(merge: true)
       );
+      
   
   }
 

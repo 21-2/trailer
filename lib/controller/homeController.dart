@@ -31,10 +31,9 @@ class HomeController extends GetxController{
 
   @override 
   void onInit() async{
+    super.onInit();
     LoginController loginController = Get.find<LoginController>();
     userModel = loginController.userModel;
-    await setLocations();
-    super.onInit();
   }
 
   @override
