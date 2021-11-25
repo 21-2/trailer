@@ -84,10 +84,15 @@ class HomeController extends GetxController{
   update();
  }
 
- String TrailistImage(Trailist trailist){
-   var temp = firestore.collection("Location").doc(trailist.locations![0]["locationId"]).get();
-  // Location tempLocation = Location.fromSnapshot(temp);
+ Future<String> trailistImage(Trailist trailist) async{
 
-   return "";
+
+   Location tempLocation = await FirebaseFirestore.instance
+        .collection('Location')
+        .doc(trailist.locations![0]["locationId"])
+        .get()
+        .then((doc) => Location.fromSnapshot(doc));
+  return tempLocation.img!;
+
  }
 }

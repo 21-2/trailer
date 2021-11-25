@@ -130,24 +130,21 @@ class HomeView extends GetView<HomeController> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                InkWell(
+                               /* InkWell(
                                   onTap: (){
                                    Get.toNamed('/trailistList');
                                   },
                                   child: Stack(children: [
                                     ClipRRect(
                                         borderRadius: BorderRadius.circular(8),
-                                        child: Image(
-                                            image: AssetImage(
-                                                'lib/images/trailist-card-1.png'),
-                                            width: width * 0.6)
+                                        child:  Image.network(controller.trailistList[0].trailistCover!,width: width * 0.6, fit: BoxFit.cover, height: height*0.1),
                                     ),
                                     Padding(
                                       padding: const EdgeInsets.fromLTRB(8, 75, 0, 5),
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: [
-                                          Text("${controller.TrailistImage(controller.trailistList[0])}",
+                                          Text("4박 5일",
                                               style: TextStyle(color: Colors.white)),
                                           SizedBox(height: height * 0.005),
                                           Row(children: [
@@ -167,15 +164,12 @@ class HomeView extends GetView<HomeController> {
                                       ),
                                     ),
                                   ]),
-                                ),
+                                ),*/
                                 SizedBox(width:width*0.03),
-                                Stack(children: [
+                               /* Stack(children: [
                                   ClipRRect(
                                       borderRadius: BorderRadius.circular(8),
-                                      child: Image(
-                                          image: AssetImage(
-                                              'lib/images/trailist-card-1.png'),
-                                          width: width * 0.6)
+                                      child:  Image.network(controller.trailistList[1].trailistCover!,width: width * 0.6, fit: BoxFit.cover, height: height*0.16),
                                   ),
                                   Padding(
                                     padding: const EdgeInsets.fromLTRB(8, 75, 0, 5),
@@ -202,7 +196,7 @@ class HomeView extends GetView<HomeController> {
                                     ),
                                   ),
                                 ]
-                                )
+                                )*/
                               ],
                     ),
                   ),

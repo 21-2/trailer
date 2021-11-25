@@ -6,6 +6,7 @@ class Trailist {
   List<dynamic>? locations;
   List<dynamic>? participants;
   Map<dynamic, dynamic>? period;
+  String? trailistCover;
 
   Trailist({
     this.trailistId,
@@ -13,6 +14,7 @@ class Trailist {
     this.locations,
     this.participants, 
     this.period,
+    this.trailistCover,
   });
 
   Map<String,dynamic> toMap(){
@@ -22,6 +24,7 @@ class Trailist {
       'participants': participants,
       'locations' : locations,
       'period' : period,
+      'trailistCover' : trailistCover,
     };
   }
 
@@ -31,6 +34,7 @@ class Trailist {
     participants = (snapshot.data() as dynamic)['participants'];
     locations = (snapshot.data() as dynamic)['locations'];
     period = (snapshot.data() as dynamic)['period'];
+    trailistCover = (snapshot.data() as dynamic)['trailistCover'];
 
   }
 }
