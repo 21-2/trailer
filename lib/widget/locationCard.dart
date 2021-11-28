@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:trailer/controller/homeController.dart';
+import 'package:trailer/controller/detailController.dart';
+
 import 'package:trailer/model/Locations.dart';
-import 'package:trailer/views/favorites.dart';
 
 class LocationCard extends StatefulWidget{
 
@@ -19,6 +19,7 @@ class _LocationCard extends State<LocationCard>{
   late Location currentLocation;
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
+  DetailController detailController = Get.find<DetailController>();
   var favorited = false;
 
   String clippedAddress(String address){
@@ -48,7 +49,6 @@ class _LocationCard extends State<LocationCard>{
   
   @override  
   Widget build(BuildContext context){
-
     setLocation();
     Widget heart = Container(
         padding: const EdgeInsets.all(0),
@@ -90,7 +90,11 @@ class _LocationCard extends State<LocationCard>{
             ),
             onTap: (){
               
-              Get.toNamed('/details');
+              detailController.documentId = widget.documentID;
+              detailController.update();
+              detailController.setLocation();
+
+              Get.toNamed('/details', preventDuplicates:false);
             
               } //여기에 argument 넣기 
           ),
