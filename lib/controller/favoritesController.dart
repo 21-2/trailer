@@ -63,10 +63,9 @@ class FavoritesController extends GetxController {
         });
       }
     });
-    //setTrailists();
   }
 
-  static Widget setLocationCard()  {
+  static Widget setLocationCard() {
     for(String item in idList){
       list.add(MyLocationCard(documentID: item));
     }
@@ -88,7 +87,7 @@ class FavoritesController extends GetxController {
 
   static Future<void> setTrailists() async {
     print("set trailists 시작!");
-    /*trailistId = [];
+    //trailistId = [];
     await firestore
         .collection('Trailist')
         .where('participants', arrayContainsAny: [_user!.uid])
@@ -96,10 +95,9 @@ class FavoritesController extends GetxController {
         .then((QuerySnapshot snapshot) {
       snapshot.docs.forEach((doc) {
         //print(doc.id);
-        trailistId.add(doc.id);
+        //trailistId.add(doc.id);
       });
-    });*/
-
+    });
   }
 
   static Widget setTrailistCard() {
