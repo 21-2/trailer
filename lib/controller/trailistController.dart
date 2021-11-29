@@ -15,6 +15,8 @@ class TrailistController extends GetxController{
   late User _user;
   User get user => _user;
 
+  late String documentId = "";
+
   @override 
   void onInit() async{
     super.onInit();
@@ -30,7 +32,7 @@ class TrailistController extends GetxController{
   }
 
   Future<void>? setTrailist() async{
-    await firestore.collection('Trailist')
+    /*await firestore.collection('Trailist')
         .where('participants', arrayContainsAny: [_user.uid])
         .get().then((QuerySnapshot snapshot){
       snapshot.docs.forEach((doc){
@@ -38,7 +40,7 @@ class TrailistController extends GetxController{
         print(doc['locationName']);
           //trailist.addAll({tempLocation.locationId! : tempLocation});
       });
-    });
+    });*/
   }
 
 }

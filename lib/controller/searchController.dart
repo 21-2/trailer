@@ -15,9 +15,6 @@ class SearchController extends GetxController {
 
   static User? _user = firebaseAuth.currentUser;
 
-  //Map<String, String> likeList = {};
-  //Map<String, Location> trailist = {};
-
   @override
   void onInit() async {
     super.onInit();
@@ -65,7 +62,7 @@ class SearchController extends GetxController {
         children: [
           TrailistCard(),
           TrailistCard(),
-          //TrailistCard(),
+          TrailistCard(),
         ],
       );
   }
