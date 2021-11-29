@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class Location {
+class Locations {
   String ? locationName;
   String? locationId;
   String? phoneNumber;
@@ -12,7 +12,7 @@ class Location {
   int?  likes;
   List<dynamic>? reviews = [];
 
-  Location({
+  Locations({
     this.locationName,
     this.locationId,
     this.phoneNumber,
@@ -40,7 +40,7 @@ class Location {
     };
   }
 
-  Location.fromSnapshot(DocumentSnapshot snapshot){
+  Locations.fromSnapshot(DocumentSnapshot snapshot){
     locationId = (snapshot.data() as dynamic)['locationId'];
     locationName = (snapshot.data() as dynamic)['locationName'];
     phoneNumber = (snapshot.data() as dynamic)['phoneNumber'];

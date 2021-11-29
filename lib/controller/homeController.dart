@@ -8,6 +8,8 @@ import 'package:trailer/model/Locations.dart';
 import 'package:trailer/model/Trailist.dart';
 import 'package:trailer/route/app_pages.dart';
 import 'package:trailer/model/User.dart';
+import 'package:http/http.dart' as http;
+import 'package:location/location.dart';
 
 class HomeController extends GetxController{
 
@@ -16,13 +18,16 @@ class HomeController extends GetxController{
   late GoogleSignIn googleSign;
   var _isSignIn = false.obs;
   get isSignIn => _isSignIn;
+  var location = new Location();
+  var currentLocation;
 
 
-  late UserModel userModel;
+  late UserModel _userModel;
+  UserModel get userModel => _userModel;
   late User _user;
   User get user => _user;
 
-  List<Location> locationList = [];
+  List<Locations> locationList = [];
   RxList<Trailist> trailistList = <Trailist>[].obs;
 
   List<String> firstRowLocations = ["OqagRBhErUyfjqt3SaH7", "ShW5Odw0EkirlgifPAzP", "2qJnz6W3sbBkBkkb27xJ"];
@@ -31,19 +36,17 @@ class HomeController extends GetxController{
 
   @override 
   void onInit() async{
-    super.onInit();
-    LoginController loginController = Get.find<LoginController>();
-    userModel = loginController.userModel;
-  }
-
-  @override
-  void onReady() async{
     googleSign = GoogleSignIn();
     ever(_isSignIn, handleAuthStateChanged);
     _isSignIn.value = await firebaseAuth.currentUser != null;
     firebaseAuth.authStateChanges().listen((event){
       _isSignIn.value = event != null;
     });
+    super.onInit();
+  }
+
+  @override
+  void onReady() async{
     super.onReady();
   }
 
@@ -51,13 +54,18 @@ class HomeController extends GetxController{
   void onClose(){
   }
 
-  void handleAuthStateChanged(isLoggedIn){
+  void handleAuthStateChanged(isLoggedIn) async{
     if (isLoggedIn){
       _user = firebaseAuth.currentUser!;
+      _userModel = await FirebaseFirestore.instance
+        .collection("Users")
+        .doc(user.uid)
+        .get()
+        .then((doc) => UserModel.fromSnapshot(doc));
       Get.offAllNamed(Routes.DASHBOARD);
     } else {
       Get.offAllNamed(Routes.LOGIN);
-    }
+    }  
   }
 
   Future<void> signOut() async {
@@ -68,7 +76,7 @@ class HomeController extends GetxController{
  Future<void>? setLocations() async{
    await firestore.collection('Location').get().then((QuerySnapshot snapshot){
      snapshot.docs.forEach((doc){
-       Location tempLocation = Location.fromSnapshot(doc);
+       Locations tempLocation = Locations.fromSnapshot(doc);
        locationList.add(tempLocation);
      });
    });
@@ -83,15 +91,36 @@ class HomeController extends GetxController{
   update();
  }
 
+ void enableLocation() async{
+   var serviceEnabled = await location.serviceEnabled();
+   if (!serviceEnabled){
+     serviceEnabled = await location.requestService();
+     if (!serviceEnabled) return;
+   }
+   var _permissionGranted = await location.hasPermission();
+   if (_permissionGranted == PermissionStatus.denied){
+     _permissionGranted = await location.requestPermission();
+     if(_permissionGranted != PermissionStatus.granted) return;
+   }
+ }
+
  Future<String> trailistImage(Trailist trailist) async{
 
 
-   Location tempLocation = await FirebaseFirestore.instance
+   Locations tempLocation = await FirebaseFirestore.instance
         .collection('Location')
         .doc(trailist.locations![0]["locationId"])
         .get()
-        .then((doc) => Location.fromSnapshot(doc));
+        .then((doc) => Locations.fromSnapshot(doc));
   return tempLocation.img!;
+ }
+
+ void getWeather(String city) async{
+    final queryParameters = {
+      'q': city,
+      'appid': '98e8dfcf4ea2319b693eb4c58b2a6018',
+      'units': 'imperial'
+    };
 
  }
 }

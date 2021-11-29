@@ -36,11 +36,10 @@ class Review extends StatelessWidget{
         Padding(
           padding: const EdgeInsets.all(5.0),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text("${review["review"]}", style: TextStyle(fontWeight: FontWeight.w300, fontSize: 13)),
-              SizedBox(height:height*0.02),
               Text(" $username | $formattedDate", style: TextStyle(fontWeight: FontWeight.w300, fontSize: 11)),
               
             ]

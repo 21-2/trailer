@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,67 @@ import 'package:trailer/widget/review.dart';
 class DetailView extends GetView<DetailController> {
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
+
+
+  TextEditingController reviewTextController = TextEditingController();
+  createAlertDialog(BuildContext context){
+    return showDialog(context: context, builder: (context){
+      return AlertDialog(
+        title: Text("리뷰 작성하기", style: TextStyle(color: Color.fromRGBO(251, 124, 113, 100), fontWeight: FontWeight.bold)),
+        content: 
+          Container(
+            width: width*0.8,
+            child: TextField(
+              controller: reviewTextController,
+              cursorColor: Color.fromRGBO(251, 124, 113, 1),
+               decoration: InputDecoration(
+                 focusColor: Color.fromRGBO(251, 124, 113, 1),
+                  hintText: '리뷰를 달아주세요',
+                  errorText: reviewTextController.text.length == 0? 'Value Can\'t Be Empty' : null,
+                  labelStyle: TextStyle(
+                      color: Colors.grey,
+                  )
+              ),
+            ),
+          )
+        , 
+        actions: [
+         ElevatedButton(
+            onPressed: (){reviewTextController.clear();Navigator.pop(context);}, child: Text('취소', style: TextStyle(color: Color.fromRGBO(251, 124, 113, 100), fontSize: 12)), 
+            style: ButtonStyle(
+              fixedSize: MaterialStateProperty.all(Size.fromWidth(width*0.25)),
+              backgroundColor: MaterialStateProperty.all(Colors.white),
+              shadowColor: MaterialStateProperty.all(Colors.transparent),
+              padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(0,15,0,15)),
+              shape: MaterialStateProperty.all(StadiumBorder(side: BorderSide(width: 1, color: Color.fromRGBO(255, 152, 162, 100)))),
+            )
+          ),
+          ElevatedButton(
+            onPressed: (){
+              if(reviewTextController.text.length > 0)
+              controller.addReview(reviewTextController.text);
+              Navigator.pop(context);
+            }, 
+            child: Text('리뷰 게시하기', style: TextStyle(color: Colors.white, fontSize: 12)), 
+            style: ButtonStyle(
+              fixedSize: MaterialStateProperty.all(Size.fromWidth(width*0.25)),
+              backgroundColor: MaterialStateProperty.all(Color.fromRGBO(255, 152, 162, 100)),
+              shadowColor: MaterialStateProperty.all(Colors.transparent),
+              padding: MaterialStateProperty.all(EdgeInsets.fromLTRB(0,15,0,15)),
+              shape: MaterialStateProperty.all(StadiumBorder(side: BorderSide(width: 1, color: Color.fromRGBO(255, 152, 162, 100)))),
+            )
+          ),
+        ],
+        
+      );
+    });
+  }
+
+
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return 
@@ -38,7 +100,7 @@ class DetailView extends GetView<DetailController> {
                   decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.grey.shade200, spreadRadius: 5, blurRadius: 5, offset: Offset(2,6))]),
                     child: ElevatedButton(
                       onPressed: ()=>{
-                        print(controller.reviewUsers)
+                        print(controller.currentLocation.reviews)
                       }, child: Text('장바구니에 담기', style: TextStyle(color: Colors.white, fontSize: 15)), 
                       style: ButtonStyle(
                         fixedSize: MaterialStateProperty.all(Size.fromWidth(width*0.4)),
@@ -105,13 +167,14 @@ class DetailView extends GetView<DetailController> {
                                   
                                   onPressed: (){
                                     controller.favorited.toggle();
+                                    controller.pressedFavorited();
                                     },
                                 ),
                               )),
                             ],
                           )
                         ),
-                        Text('${controller.currentLocation.likes}', style:TextStyle(fontSize: 15, color: Colors.white ))
+                        Obx(()=>Text('${controller.count}', style:TextStyle(fontSize: 15, color: Colors.white )))
                       ])
                     ],
                   )),
@@ -187,7 +250,9 @@ class DetailView extends GetView<DetailController> {
                           foregroundColor: MaterialStateProperty.all(Colors.transparent),
                           shadowColor: MaterialStateProperty.all(Colors.transparent),
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          createAlertDialog(context);
+                        },
                         child: Ink(
                           decoration: BoxDecoration(
                               gradient: LinearGradient(colors: [Color.fromRGBO(252, 150, 160, 100), Color.fromRGBO(250, 157, 144, 100), Color.fromRGBO(249, 160, 130, 100),],
@@ -227,7 +292,7 @@ class DetailView extends GetView<DetailController> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         for (int i=0; i< controller.currentLocation.reviews!.length; i++)
-                           Row(children:[Review(review:controller.currentLocation.reviews![i], username: controller.reviewUsers[0]),SizedBox(width:width*0.03),])
+                           Row(children:[Review(review:controller.currentLocation.reviews![controller.currentLocation.reviews!.length-1-i], username: controller.reviewUsers[controller.currentLocation.reviews!.length-1-i]),SizedBox(width:width*0.03),])
 
                       ]
                     )

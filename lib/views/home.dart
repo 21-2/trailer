@@ -11,9 +11,12 @@ class HomeView extends GetView<HomeController> {
 
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
+
+  Map<String,String> weather = {
+    "cloudy": "☁️",
+  }; 
   Widget build(BuildContext context) {
-    
-    return 
+    return  
     FutureBuilder(
       future: controller.setLocations(),
        builder: (context, snapshot){
@@ -60,7 +63,7 @@ class HomeView extends GetView<HomeController> {
                     child: IconButton(
                       color: Color.fromRGBO(254, 113, 117, 100),
                       icon: ImageIcon(AssetImage('lib/images/shoppingCart.png')),
-                      onPressed: () {},
+                      onPressed: () {print("hello ${controller.userModel.id}");},
                     ))
               ],
             ),

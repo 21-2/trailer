@@ -16,7 +16,7 @@ class LocationCard extends StatefulWidget{
 
 class _LocationCard extends State<LocationCard>{
 
-  late Location currentLocation;
+  late Locations currentLocation;
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
   DetailController detailController = Get.find<DetailController>();
@@ -44,7 +44,7 @@ class _LocationCard extends State<LocationCard>{
         .collection('Location')
         .doc(widget.documentID)
         .get()
-        .then((doc) => Location.fromSnapshot(doc));
+        .then((doc) => Locations.fromSnapshot(doc));
   }
   
   @override  
