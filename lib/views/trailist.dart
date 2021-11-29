@@ -27,6 +27,10 @@ class TrailistView extends GetView<TrailistController> {
         }
         var data = snapshot.data!.data();
         //var size = data!['locations'].length();
+        String start = data!['period']['start'].toDate().toString().split(" ")[0];
+        String end = data!['period']['end'].toDate().toString().split(" ")[0];
+        String date = start + ' ~ ' + end;
+
         return Scaffold(
             body: SingleChildScrollView(
           child: Column(
@@ -72,7 +76,7 @@ class TrailistView extends GetView<TrailistController> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('21.11.18 ~ 21.11.20',
+                          Text(date,
                               style: TextStyle(
                                   fontWeight: FontWeight.w700,
                                   fontSize: 13,
