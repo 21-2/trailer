@@ -1,35 +1,118 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:trailer/controller/homeController.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:trailer/model/Trailist.dart';
 import 'package:trailer/model/User.dart';
+import 'package:trailer/widget/myLocationCard.dart';
+import 'package:trailer/widget/myTrailist.dart';
+import 'package:trailer/widget/trailist.dart';
 
-class FavoritesController extends GetxController{
-
-  HomeController homeController = Get.find<HomeController>(); 
+class FavoritesController extends GetxController {
+  HomeController homeController = Get.find<HomeController>();
   late UserModel userModel;
   //String uid = homeController.firebaseAuth.currentUser!.uid;
-  Stream _myLocationStream = FirebaseFirestore.instance.collection('Users').doc('hello').snapshots();
-  CollectionReference users = FirebaseFirestore.instance.collection('users');
+  //Stream _myLocationStream = FirebaseFirestore.instance.collection('Users').doc('hello').snapshots();
+  //CollectionReference users = FirebaseFirestore.instance.collection('users');
   // users collection에서 현재 firebaseUser.uid인 user만 가져와서 이를 data에 옮김
   //QuerySnapshot data = await users.where('uid', isEqualTo: uid).get();
 
-  @override 
-  void onInit() async{
+  static FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+  static FirebaseFirestore firestore = FirebaseFirestore.instance;
+
+  static User? _user = firebaseAuth.currentUser;
+
+  static List<Widget> list =[];
+  static List<String> idList = [];
+
+  static List<String> trailistId = ["7iplYii7Enx3JoiglCkf", "AEotD60el35tWOaPTdhv", "GURnZKqcRDzX4XofqsUN"];
+  static List<Widget> trailist = [];
+
+  @override
+  void onInit() async {
     super.onInit();
   }
 
   @override
-  void onReady(){
+  void onReady() {
     super.onReady();
   }
 
-  @override 
-  void onClose(){
+  @override
+  void onClose() {}
+
+  static Future<void> setLocations() async {
+    print("set locations  시작!");
+    list =[];
+    idList = [];
+
+    await firestore
+        .collection('Users')
+        .doc(_user!.uid)
+        .get()
+        .then((DocumentSnapshot documentSnapshot) {
+      if (documentSnapshot.exists) {
+        List.from(documentSnapshot['favorites']).forEach((locationId){
+          if(!idList.contains(locationId)){
+
+            print(locationId);
+            idList.add(locationId);
+          }
+        });
+      }
+    });
+    //setTrailists();
   }
 
-  void getAllLocationlist(){
+  static Widget setLocationCard()  {
+    print("set location card 시작!");
 
+    for(String item in idList){
+      list.add(MyLocationCard(documentID: item));
+    }
+    return
+      Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              MyLocationCard(documentID: idList[0]),
+              MyLocationCard(documentID: idList[1]),
+              MyLocationCard(documentID: idList[2]),
+            ]
+          )
+        ],
+      );
   }
 
+  static Future<void> setTrailists() async {
+    print("set trailists 시작!");
+/*
+    await firestore
+        .collection('Trailist')
+        .where('participants', arrayContainsAny: [_user!.uid])
+        .get()
+        .then((QuerySnapshot snapshot) {
+      snapshot.docs.forEach((doc) {
+        print(doc);
+        //trailist.addAll({tempLocation.locationId! : tempLocation});
+      });
+    });
+    */
+  }
+
+  static Widget setTrailistCard() {
+    print("set trailist card");
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        MyTrailistCard(documentID: trailistId[0]),
+        MyTrailistCard(documentID: trailistId[1]),
+        MyTrailistCard(documentID: trailistId[2]),
+      ],
+    );
+  }
 }

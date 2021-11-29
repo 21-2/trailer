@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:trailer/controller/searchController.dart';
+import 'package:trailer/widget/myTrailist.dart';
 import 'package:trailer/widget/searchlocationCard.dart';
 import 'package:trailer/widget/trailist.dart';
 
@@ -124,10 +125,24 @@ Widget firstTab(){
 
 Widget secondTab(){
   return SingleChildScrollView(
-    child: 
+    child:
     Padding(
       padding: const EdgeInsets.fromLTRB(15,30,15,0),
-      child: SearchController.setTrailistCard(),
-      )
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              TrailistCard(),
+              TrailistCard(),
+              TrailistCard(),
+            ],
+          ),
+        ],
+      ),
+    ),
   );
 }

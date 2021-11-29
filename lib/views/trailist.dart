@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,9 @@ class TrailistView extends GetView<TrailistController> {
 
   @override
   Widget build(BuildContext context) {
+    print("trailist view페이");
+    //print('${controller.documentId}');
+    //var document = FirebaseFirestore.instance.collection('Trailist').doc('${controller.documentId}').snapshots();
     return Scaffold(
         body: SingleChildScrollView(
       child: Column(
