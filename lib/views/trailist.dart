@@ -27,7 +27,6 @@ class TrailistView extends GetView<TrailistController> {
         }
         var data = snapshot.data!.data();
         //var size = data!['locations'].length();
-
         return Scaffold(
             body: SingleChildScrollView(
           child: Column(
@@ -149,41 +148,36 @@ class TrailistView extends GetView<TrailistController> {
                                             Text('3곳'),
                                           ]),
                                           SizedBox(height: 20),
-                                          /*Text(
-                                            '18 Thursday',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 20,
-                                                color: Color.fromRGBO(
-                                                    254, 113, 117, 100)),
-                                          ),
-                                          TrailistLocationListCard(),
-                                          TrailistLocationListCard(),
-                                          SizedBox(height: 20),
                                           Text(
-                                            '19 Friday',
+                                            data!['locations'][0]['date'].toDate().toString().split(" ")[0],
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 20,
                                                 color: Color.fromRGBO(
                                                     254, 113, 117, 100)),
                                           ),
-                                          TrailistLocationListCard(),
-                                          TrailistLocationListCard(),
-                                          SizedBox(height: 20),
+                                          TrailistLocationListCard(documentID: data['locations'][0]['locationId'],
+                                              date: data!['locations'][0]['date'].toDate().toString().split(" ")[1]),
                                           Text(
-                                            '20 Saturday',
+                                            data!['locations'][1]['date'].toDate().toString().split(" ")[0],
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 20,
                                                 color: Color.fromRGBO(
                                                     254, 113, 117, 100)),
                                           ),
-                                          TrailistLocationListCard(),
-                                           */
-                                          TrailistLocationListCard(documentID: data['locations'][0]['locationId'], date: data['locations'][0]['date'].toString()),
-                                          TrailistLocationListCard(documentID: data['locations'][1]['locationId'], date: data['locations'][1]['date'].toString()),
-                                          TrailistLocationListCard(documentID: data['locations'][2]['locationId'], date: data['locations'][2]['date'].toString()),
+                                          TrailistLocationListCard(documentID: data['locations'][1]['locationId'],
+                                              date: data!['locations'][1]['date'].toDate().toString().split(" ")[1]),
+                                          Text(
+                                            data!['locations'][2]['date'].toDate().toString().split(" ")[0],
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.w700,
+                                                fontSize: 20,
+                                                color: Color.fromRGBO(
+                                                    254, 113, 117, 100)),
+                                          ),
+                                          TrailistLocationListCard(documentID: data['locations'][2]['locationId'],
+                                              date: data!['locations'][2]['date'].toDate().toString().split(" ")[1]),
                                         ])))
                           ]))),
             ],

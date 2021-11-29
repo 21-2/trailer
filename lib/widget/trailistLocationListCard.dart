@@ -25,6 +25,7 @@ class _TrailistLocationListCard extends State<TrailistLocationListCard> {
   Widget build(BuildContext context) {
     var document = FirebaseFirestore.instance.collection('Location').doc(widget.documentID).snapshots();
     print(widget.documentID);
+
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       stream: document,
       builder: (context, snapshot) {
@@ -39,7 +40,7 @@ class _TrailistLocationListCard extends State<TrailistLocationListCard> {
             children: [
               Row(
                 children: [
-                  //Text('9:00 AM'),
+                  Text(widget.date.split(".")[0]),
                   SizedBox(width: 5),
                   InkWell(
                       child: ClipRRect(
