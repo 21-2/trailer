@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trailer/controller/favoritesController.dart';
 import 'package:trailer/controller/trailistController.dart';
 import 'package:trailer/model/Trailist.dart';
 
@@ -16,7 +17,8 @@ class _MyTrailistCard extends State<MyTrailistCard> {
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
 
-  TrailistController trailistController = Get.find<TrailistController>();
+  //TrailistController trailistController = Get.find<TrailistController>();
+  FavoritesController favoriteController = Get.find<FavoritesController>();
 
   /*Future<void>?setTrailist() async{
     print("trailist 셋팅!!");
@@ -62,11 +64,11 @@ class _MyTrailistCard extends State<MyTrailistCard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              GestureDetector(
+              InkWell(
                 onTap: (){
-                  trailistController.documentId = widget.documentID;
-                  trailistController.update();
-                  trailistController.setTrailist();
+                  favoriteController.currentTrailist = widget.documentID;
+                  //trailistController.update();
+                  //trailistController.setTrailist();
                   Get.toNamed('/trailist', preventDuplicates:false);
                 },
                 child: Stack(
@@ -94,7 +96,7 @@ class _MyTrailistCard extends State<MyTrailistCard> {
                             children: [
                               Icon(Icons.person, color: Colors.white, size: 12),
                               SizedBox(width: width * 0.01),
-                              Text('gracenho829 외 6명',
+                              Text('gracenho829 외 2명',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w300,
                                       fontSize: 12,
@@ -117,7 +119,7 @@ class _MyTrailistCard extends State<MyTrailistCard> {
                             children: [
                               Icon(Icons.location_on, color: Colors.white, size: 12),
                               SizedBox(width: width * 0.01),
-                              Text('6곳',
+                              Text('3곳',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w300,
                                       fontSize: 12,

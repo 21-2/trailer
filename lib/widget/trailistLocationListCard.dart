@@ -1,7 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TrailistLocationListCard extends StatefulWidget {
+  String documentID;
+  String date;
+  TrailistLocationListCard({required this.documentID, required this.date});
+
   @override
   _TrailistLocationListCard createState() => _TrailistLocationListCard();
 }
@@ -9,64 +14,81 @@ class TrailistLocationListCard extends StatefulWidget {
 String date = "2021.11.18 (THU)";
 String time = "9:00 AM";
 
+late String name;
+late String city;
+
 class _TrailistLocationListCard extends State<TrailistLocationListCard> {
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
-      child: Column(
-        children: [
-          Row(
-            children: [
-              Text('9:00 AM'),
-              SizedBox(width: 5),
-              InkWell(
-                  child: ClipRRect(
-                      borderRadius: BorderRadius.circular(5),
-                      child: Image(
-                          image: AssetImage('lib/images/loc-card-1.png'), width: 50)),
-                  onTap: () => {Get.toNamed('/details')} //여기에 argument 넣기
-                  ),
-              SizedBox(width: 10),
-              InkWell(
-                child: SizedBox(
-                  width: 160,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text("이스케이프 풀 빌라",
-                          style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
-                      SizedBox(height: 3),
-                      Text('포항시 남구 구룡포',
-                          style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12)),
-                    ],
-                  ),
-                ),
-                onTap: () {
-                  FlutterDialog(context);
-                }
-              ),
-              IconButton(
-                  icon: Icon(Icons.close, size: 17.0),
-                  onPressed: (){
+    var document = FirebaseFirestore.instance.collection('Location').doc(widget.documentID).snapshots();
+    print(widget.documentID);
+    return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
+      stream: document,
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return new Text("");
+        }
+        var data = snapshot.data!.data();
 
-                  }
+        return Padding(
+          padding: const EdgeInsets.fromLTRB(0, 10, 0, 10),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  //Text('9:00 AM'),
+                  SizedBox(width: 5),
+                  InkWell(
+                      child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Image(
+                              image: NetworkImage(data!['img']), width: 50)),
+                      onTap: () => {Get.toNamed('/details')} //여기에 argument 넣기
+                      ),
+                  SizedBox(width: 10),
+                  InkWell(
+                    child: SizedBox(
+                      width: 160,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(data!['locationName'],
+                              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
+                          SizedBox(height: 3),
+                          Text(data!['city'],
+                              style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12)),
+                        ],
+                      ),
+                    ),
+                    onTap: () {
+                      name = data!['locationName'];
+                      city = data!['city'];
+                      FlutterDialog(context);
+                    }
+                  ),
+                  IconButton(
+                      icon: Icon(Icons.close, size: 17.0),
+                      onPressed: (){
+
+                      }
+                  ),
+                ],
+              ),
+              SizedBox(height: 15),
+              Divider(
+                height: 10.0,
+                color: Colors.grey[850],
+                thickness: 0.5,
+                endIndent: 20.0,
               ),
             ],
           ),
-          SizedBox(height: 15),
-          Divider(
-            height: 10.0,
-            color: Colors.grey[850],
-            thickness: 0.5,
-            endIndent: 20.0,
-          ),
-        ],
-      ),
+        );
+      }
     );
   }
 }
@@ -83,7 +105,7 @@ void FlutterDialog(BuildContext context) {
           //Dialog Main Title
           title: Column(
             children: <Widget>[
-              Text("이스케이프 풀 빌라"),
+              Text(name),
             ],
           ),
           //
@@ -92,7 +114,7 @@ void FlutterDialog(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Text(
-                "장소: 포항시 남구 구룡포",
+                city,
                   style: TextStyle(fontSize: 13)
               ),
               Text(date + ' ' + time,

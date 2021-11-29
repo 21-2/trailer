@@ -27,8 +27,10 @@ class FavoritesController extends GetxController {
   static List<Widget> list =[];
   static List<String> idList = [];
 
-  static List<String> trailistId = ["7iplYii7Enx3JoiglCkf", "AEotD60el35tWOaPTdhv", "GURnZKqcRDzX4XofqsUN"];
+  static List<String> trailistId = ["7iplYii7Enx3JoiglCkf", "AEotD60el35tWOaPTdhv", "GURnZKqcRDzX4XofqsUN"];  //임시
   static List<Widget> trailist = [];
+
+  String currentTrailist = "";  //선택된 트레일리스트 ID
 
   @override
   void onInit() async {
@@ -56,8 +58,6 @@ class FavoritesController extends GetxController {
       if (documentSnapshot.exists) {
         List.from(documentSnapshot['favorites']).forEach((locationId){
           if(!idList.contains(locationId)){
-
-            print(locationId);
             idList.add(locationId);
           }
         });
@@ -67,11 +67,10 @@ class FavoritesController extends GetxController {
   }
 
   static Widget setLocationCard()  {
-    print("set location card 시작!");
-
     for(String item in idList){
       list.add(MyLocationCard(documentID: item));
     }
+
     return
       Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -89,30 +88,49 @@ class FavoritesController extends GetxController {
 
   static Future<void> setTrailists() async {
     print("set trailists 시작!");
-/*
+    /*trailistId = [];
     await firestore
         .collection('Trailist')
         .where('participants', arrayContainsAny: [_user!.uid])
         .get()
         .then((QuerySnapshot snapshot) {
       snapshot.docs.forEach((doc) {
-        print(doc);
-        //trailist.addAll({tempLocation.locationId! : tempLocation});
+        //print(doc.id);
+        trailistId.add(doc.id);
       });
-    });
-    */
+    });*/
+
   }
 
   static Widget setTrailistCard() {
     print("set trailist card");
 
+    for(String item in trailistId){
+      trailist.add(MyLocationCard(documentID: item));
+    }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
+      children:
+      [
         MyTrailistCard(documentID: trailistId[0]),
         MyTrailistCard(documentID: trailistId[1]),
         MyTrailistCard(documentID: trailistId[2]),
       ],
     );
   }
+
+  Future<void> deleteMember() async {
+
+  }
+
+  Future<void> updateName(String newName) async{
+    CollectionReference trailist = FirebaseFirestore.instance.collection('Trailist');
+    await trailist
+        .doc(currentTrailist)
+        .update({'trailistName': newName})
+        .then((value) => print("trailist name Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
+  }
+
 }
