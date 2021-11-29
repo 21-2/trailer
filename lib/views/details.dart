@@ -77,6 +77,21 @@ class DetailView extends GetView<DetailController> {
     FutureBuilder(
       future: controller.setLocation(),
       builder: (context, snapshot){
+         if(snapshot.connectionState == ConnectionState.waiting) 
+         return 
+         Container(
+           width: width,
+           child: Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             crossAxisAlignment: CrossAxisAlignment.center,
+             children: [
+               CircularProgressIndicator(
+                 backgroundColor: Colors.white,
+                 valueColor: new AlwaysStoppedAnimation<Color>(Color.fromRGBO(232, 232, 232, 100)),
+               ),
+             ],
+           ),
+         );     
      return  Scaffold(
         bottomNavigationBar: 
             Padding(

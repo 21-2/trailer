@@ -1,10 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:trailer/controller/favoritesController.dart';
-import 'package:trailer/widget/myLocationCard.dart';
-import 'package:trailer/widget/myTrailist.dart';
-import 'package:trailer/widget/searchLocationCard.dart';
-import 'package:trailer/widget/trailist.dart';
+
 
 class Favorites extends GetView<FavoritesController> {
   final _searchBar = TextEditingController();
@@ -65,6 +62,19 @@ Widget firstTab() {
   return FutureBuilder(
    future: FavoritesController.setLocations(),
     builder: (context, snapshot) {
+       if(snapshot.connectionState == ConnectionState.waiting) 
+         return 
+         Container(
+           child: Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             crossAxisAlignment: CrossAxisAlignment.center,
+             children: [
+               CircularProgressIndicator(
+                 backgroundColor: Color.fromRGBO(232, 232, 232, 1),
+               ),
+             ],
+           ),
+         );     
       return SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(15, 30, 15, 0),

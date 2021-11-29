@@ -20,6 +20,21 @@ class HomeView extends GetView<HomeController> {
     FutureBuilder(
       future: controller.setLocations(),
        builder: (context, snapshot){
+         if(snapshot.connectionState == ConnectionState.waiting) 
+         return 
+         Container(
+           width: width,
+           child: Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             crossAxisAlignment: CrossAxisAlignment.center,
+             children: [
+               CircularProgressIndicator(
+                 valueColor: AlwaysStoppedAnimation<Color>(Color.fromRGBO(232, 232, 232, 1)),
+               ),
+             ],
+           ),
+         );
+       
        return Scaffold(
           body: 
         SingleChildScrollView(
@@ -135,7 +150,7 @@ class HomeView extends GetView<HomeController> {
                               children: [
                                 InkWell(
                                   onTap: (){
-                                   Get.toNamed('/trailistList');
+                                    Get.toNamed('/trailist', preventDuplicates:false);
                                   },
                                   child: Stack(children: [
                                     ClipRRect(
@@ -169,36 +184,39 @@ class HomeView extends GetView<HomeController> {
                                   ]),
                                 ),
                                 SizedBox(width:width*0.03),
-                                Stack(children: [
-                                  ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child:  Image.network(controller.trailistList[1].trailistCover!,width: width * 0.6, fit: BoxFit.cover, height: height*0.16),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.fromLTRB(8, 75, 0, 5),
-                                    child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text("2박 3일",
-                                            style: TextStyle(color: Colors.white)),
-                                        SizedBox(height: height * 0.005),
-                                        Row(children: [
-                                          Text("${controller.trailistList[1].trailistName} |",
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w700,
-                                                  fontSize: 13,
-                                                  color: Colors.white)),
-                                          SizedBox(width: width * 0.015),
-                                          Text('gracenho829',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.w400,
-                                                  fontSize: 12,
-                                                  color: Colors.white)),
-                                        ])
-                                      ],
+                                InkWell(
+                                  onTap: (){ Get.toNamed('/trailist', preventDuplicates:false);},
+                                  child: Stack(children: [
+                                    ClipRRect(
+                                        borderRadius: BorderRadius.circular(8),
+                                        child:  Image.network(controller.trailistList[1].trailistCover!,width: width * 0.6, fit: BoxFit.cover, height: height*0.16),
                                     ),
+                                    Padding(
+                                      padding: const EdgeInsets.fromLTRB(8, 75, 0, 5),
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text("2박 3일",
+                                              style: TextStyle(color: Colors.white)),
+                                          SizedBox(height: height * 0.005),
+                                          Row(children: [
+                                            Text("${controller.trailistList[1].trailistName} |",
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 13,
+                                                    color: Colors.white)),
+                                            SizedBox(width: width * 0.015),
+                                            Text('gracenho829',
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w400,
+                                                    fontSize: 12,
+                                                    color: Colors.white)),
+                                          ])
+                                        ],
+                                      ),
+                                    ),
+                                  ]
                                   ),
-                                ]
                                 )
                               ],
                     ),

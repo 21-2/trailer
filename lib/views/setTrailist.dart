@@ -73,9 +73,9 @@ class SetTrailist extends GetView<TrailistController>{
                               labelText: '이메일을 입력하세요',
                             )
                         ),
-                        TrailerCard(documentID: data!['participants'][0]),
-                        TrailerCard(documentID: data!['participants'][1]),
-                        TrailerCard(documentID: data!['participants'][2]),
+                        TrailerCard(documentID: data['participants'][0]),
+                        TrailerCard(documentID: data['participants'][1]),
+                        TrailerCard(documentID: data['participants'][2]),
                         SizedBox(
                           width: 20,
                           child: Column(

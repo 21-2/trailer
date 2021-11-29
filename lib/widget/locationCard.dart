@@ -49,7 +49,6 @@ class _LocationCard extends State<LocationCard>{
   
   @override  
   Widget build(BuildContext context){
-    setLocation();
     Widget heart = Container(
         padding: const EdgeInsets.all(0),
         child: Row(
@@ -70,41 +69,61 @@ class _LocationCard extends State<LocationCard>{
         )
       );
 
-    return Container(
-      child: 
-      Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          InkWell(
-            child: Stack(
-              children: [
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(7),
-                  child: Image.network(currentLocation.img!, height: height*0.14, width:height*0.14, fit: BoxFit.fill,)
-                ),
-                 Padding(
-                   padding: const EdgeInsets.fromLTRB(50, 65, 0, 0),
-                   child: heart,
-                 ),
-              ]
-            ),
-            onTap: (){
+    return 
+    FutureBuilder(
+      future:  setLocation(),
+     builder: (context, snapshot){
+      if(snapshot.connectionState == ConnectionState.waiting) 
+         return 
+         Container(
+           width: width,
+           child: Column(
+             mainAxisAlignment: MainAxisAlignment.center,
+             crossAxisAlignment: CrossAxisAlignment.center,
+             children: [
+               CircularProgressIndicator(
+                   valueColor: new AlwaysStoppedAnimation<Color>(Color.fromRGBO(232, 232, 232, 1)),
+               ),
+             ],
+           ),
+         );     
+     return Container(
+        child: 
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            InkWell(
+              child: Stack(
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(7),
+                    child: Image.network(currentLocation.img!, height: height*0.14, width:height*0.14, fit: BoxFit.fill,)
+                  ),
+                   Padding(
+                     padding: const EdgeInsets.fromLTRB(50, 65, 0, 0),
+                     child: heart,
+                   ),
+                ]
+              ),
+              onTap: (){
+                
+                detailController.documentId = widget.documentID;
+                detailController.update();
+                detailController.setLocation();
+    
+                Get.toNamed('/details', preventDuplicates:false);
               
-              detailController.documentId = widget.documentID;
-              detailController.update();
-              detailController.setLocation();
-
-              Get.toNamed('/details', preventDuplicates:false);
-            
-              } //여기에 argument 넣기 
-          ),
-          SizedBox(height: height*0.02), 
-          Text(currentLocation.locationName!, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
-          SizedBox(height: height*0.008), 
-          Text(clippedAddress(currentLocation.address!), style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12), overflow: TextOverflow.clip),
-        ],
-        
-      ),
-      );
+                } //여기에 argument 넣기 
+            ),
+            SizedBox(height: height*0.02), 
+            Text(currentLocation.locationName!, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
+            SizedBox(height: height*0.008), 
+            Text(clippedAddress(currentLocation.address!), style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12), overflow: TextOverflow.clip),
+          ],
+          
+        ),
+        );
+     }
+    );
   }
 }

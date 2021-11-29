@@ -56,17 +56,17 @@ class _TrailistLocationListCard extends State<TrailistLocationListCard> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(data!['locationName'],
+                          Text(data['locationName'],
                               style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
                           SizedBox(height: 3),
-                          Text(data!['city'],
+                          Text(data['city'],
                               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12)),
                         ],
                       ),
                     ),
                     onTap: () {
-                      name = data!['locationName'];
-                      city = data!['city'];
+                      name = data['locationName'];
+                      city = data['city'];
                       FlutterDialog(context);
                     }
                   ),

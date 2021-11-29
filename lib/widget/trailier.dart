@@ -43,7 +43,7 @@ class _TrailerCard extends State<TrailerCard> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(data!['email']),
-                    Text(data!['name']),
+                    Text(data['name']),
                   ]
                 ),
               ),

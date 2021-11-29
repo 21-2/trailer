@@ -60,7 +60,8 @@ class _MyTrailistCard extends State<MyTrailistCard> {
           return new Text("");
         }
         var data = snapshot.data!.data();
-        return Container(
+        return 
+        Container(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -86,7 +87,7 @@ class _MyTrailistCard extends State<MyTrailistCard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: height * 0.02),
-                          Text(data!['trailistName'],
+                          Text(data['trailistName'],
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15,
@@ -119,7 +120,7 @@ class _MyTrailistCard extends State<MyTrailistCard> {
                             children: [
                               Icon(Icons.location_on, color: Colors.white, size: 12),
                               SizedBox(width: width * 0.01),
-                              Text('3곳',
+                              Text('${data["locations"].length} 곳',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w300,
                                       fontSize: 12,

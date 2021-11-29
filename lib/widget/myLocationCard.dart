@@ -49,7 +49,7 @@ class _MyLocationCard extends State<MyLocationCard> {
                         borderRadius: BorderRadius.circular(5),
                         child: Image(
                             image: NetworkImage(data!['img']),
-                            height: height * 0.14)),
+                            height: height * 0.13, width: height * 0.13, fit: BoxFit.cover)),
                     onTap: () {
                       detailController.documentId = widget.documentID;
                       detailController.update();
@@ -58,9 +58,9 @@ class _MyLocationCard extends State<MyLocationCard> {
                     },
                 ),
                 SizedBox(height: height * 0.02),
-                Text(data!['locationName'], style: TextStyle(fontSize: 13)),
+                Text(data['locationName'], style: TextStyle(fontSize: 13)),
                 SizedBox(height: height * 0.008),
-                Text(data!['city'],
+                Text(data['city'],
                     style: TextStyle(fontSize: 12)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -76,7 +76,7 @@ class _MyLocationCard extends State<MyLocationCard> {
                         _toggleFavorite();
                       },
                     ),
-                    Text(data!['likes'].toString(), style: TextStyle(fontWeight: FontWeight.bold))
+                    Text(data['likes'].toString(), style: TextStyle(fontWeight: FontWeight.bold))
                   ],
                 ),
               ],

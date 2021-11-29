@@ -1,13 +1,9 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:trailer/controller/favoritesController.dart';
 import 'package:trailer/controller/trailistController.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:trailer/widget/locationCard.dart';
-import 'package:trailer/widget/review.dart';
 import 'package:trailer/widget/trailistLocationListCard.dart';
 
 class TrailistView extends GetView<TrailistController> {
@@ -79,7 +75,7 @@ class TrailistView extends GetView<TrailistController> {
                                   fontSize: 13,
                                   color: Colors.white)),
                           SizedBox(height: 3),
-                          Text(data!['trailistName'],
+                          Text(data['trailistName'],
                               style: TextStyle(fontSize: 20, color: Colors.white)),
                           SizedBox(height: 10),
                           Row(children: [
