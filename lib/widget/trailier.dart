@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trailer/controller/trailistController.dart';
 
 class TrailerCard extends StatefulWidget {
   String documentID;
@@ -13,6 +14,8 @@ class TrailerCard extends StatefulWidget {
 class _TrailerCard extends State<TrailerCard> {
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
+
+  TrailistController trailistController = Get.find<TrailistController>();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +53,7 @@ class _TrailerCard extends State<TrailerCard> {
               IconButton(
                   icon: Icon(Icons.close, size: 17.0),
                   onPressed: (){
-
+                    trailistController.deleteTrailer(widget.documentID);
                   }
               ),
             ],

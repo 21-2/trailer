@@ -40,6 +40,7 @@ class TrailistController extends GetxController{
       });
     });*/
   }
+
    Future<void> updateName(String newName) async{
     CollectionReference trailist = FirebaseFirestore.instance.collection('Trailist');
     await trailist
@@ -49,4 +50,31 @@ class TrailistController extends GetxController{
         .catchError((error) => print("Failed to update user: $error"));
 
    }
+
+   Future<void> addTrailer(String newTrailier) async {
+     CollectionReference trailist = FirebaseFirestore.instance.collection('Trailist');
+     CollectionReference user = FirebaseFirestore.instance.collection('Users');
+
+     DocumentReference docRef = await user.add(
+         {"name": "아무개", "email": newTrailier, "recentSearch" : [], "favorites": [], "cart" : [] , "trailist" : []}
+     );
+
+      await trailist
+         .doc(documentId)
+         .update({'participants': FieldValue.arrayUnion([docRef.id])})
+         .then((value) => print("trailer added"))
+         .catchError((error) => print("Failed to add trailer: $error"));
+
+   }
+
+  Future<void> deleteTrailer(String trailier) async {
+    CollectionReference trailist = FirebaseFirestore.instance.collection('Trailist');
+    await trailist
+        .doc(documentId)
+        .update({'participants': FieldValue.arrayRemove([trailier])})
+        .then((value) => print("trailer deleted"))
+        .catchError((error) => print("Failed to add trailer: $error"));
+
+
+  }
 }

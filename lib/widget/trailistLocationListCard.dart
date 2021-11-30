@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trailer/controller/detailController.dart';
 
 class TrailistLocationListCard extends StatefulWidget {
   String documentID;
@@ -11,8 +12,8 @@ class TrailistLocationListCard extends StatefulWidget {
   _TrailistLocationListCard createState() => _TrailistLocationListCard();
 }
 
-String date = "2021.11.18 (THU)";
-String time = "9:00 AM";
+String date = "2021-11-18";
+String time = "09:00";
 
 late String name;
 late String city;
@@ -21,10 +22,14 @@ class _TrailistLocationListCard extends State<TrailistLocationListCard> {
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
 
+  DetailController detailController = Get.find<DetailController>();
+
   @override
   Widget build(BuildContext context) {
     var document = FirebaseFirestore.instance.collection('Location').doc(widget.documentID).snapshots();
-    print(widget.documentID);
+
+    date = widget.date.split(" ")[0];
+    time = widget.date.split(" ")[1];
 
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       stream: document,
@@ -40,14 +45,19 @@ class _TrailistLocationListCard extends State<TrailistLocationListCard> {
             children: [
               Row(
                 children: [
-                  Text(widget.date.split(".")[0]),
+                  Text(widget.date.split(" ")[1].split(".")[0]),
                   SizedBox(width: 5),
                   InkWell(
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(5),
                           child: Image(
                               image: NetworkImage(data!['img']), width: 50)),
-                      onTap: () => {Get.toNamed('/details')} //여기에 argument 넣기
+                      onTap: () {
+                        detailController.documentId = widget.documentID;
+                        detailController.update();
+                        detailController.setLocation();
+                        Get.toNamed('/details');
+                      }
                       ),
                   SizedBox(width: 10),
                   InkWell(
@@ -68,6 +78,8 @@ class _TrailistLocationListCard extends State<TrailistLocationListCard> {
                     onTap: () {
                       name = data['locationName'];
                       city = data['city'];
+                      date = widget.date.split(" ")[0];
+                      time = widget.date.split(" ")[1].split(".")[0];
                       FlutterDialog(context);
                     }
                   ),

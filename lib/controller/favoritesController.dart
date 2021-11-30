@@ -39,7 +39,6 @@ class FavoritesController extends GetxController {
   void onClose() {}
 
   static Future<void> setLocations() async {
-    print("set locations  시작!");
     list =[];
     idList = [];
 
@@ -79,7 +78,6 @@ class FavoritesController extends GetxController {
   }
 
   static Future<void> setTrailists() async {
-    print("set trailists 시작!");
     //trailistId = [];
     await firestore
         .collection('Trailist')
@@ -94,8 +92,6 @@ class FavoritesController extends GetxController {
   }
 
   static Widget setTrailistCard() {
-    print("set trailist card");
-
     for(String item in trailistId){
       trailist.add(MyLocationCard(documentID: item));
     }
