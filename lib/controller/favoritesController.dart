@@ -13,12 +13,6 @@ import 'package:trailer/widget/trailist.dart';
 class FavoritesController extends GetxController {
   HomeController homeController = Get.find<HomeController>();
   late UserModel userModel;
-  //String uid = homeController.firebaseAuth.currentUser!.uid;
-  //Stream _myLocationStream = FirebaseFirestore.instance.collection('Users').doc('hello').snapshots();
-  //CollectionReference users = FirebaseFirestore.instance.collection('users');
-  // users collection에서 현재 firebaseUser.uid인 user만 가져와서 이를 data에 옮김
-  //QuerySnapshot data = await users.where('uid', isEqualTo: uid).get();
-
   static FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   static FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -29,8 +23,7 @@ class FavoritesController extends GetxController {
 
   static List<String> trailistId = ["7iplYii7Enx3JoiglCkf", "AEotD60el35tWOaPTdhv", "GURnZKqcRDzX4XofqsUN"];  //임시
   static List<Widget> trailist = [];
-
-  String currentTrailist = "";  //선택된 트레일리스트 ID
+//선택된 트레일리스트 ID
 
   @override
   void onInit() async {
@@ -124,13 +117,6 @@ class FavoritesController extends GetxController {
 
   }
 
-  Future<void> updateName(String newName) async{
-    CollectionReference trailist = FirebaseFirestore.instance.collection('Trailist');
-    await trailist
-        .doc(currentTrailist)
-        .update({'trailistName': newName})
-        .then((value) => print("trailist name Updated"))
-        .catchError((error) => print("Failed to update user: $error"));
-  }
+
 
 }

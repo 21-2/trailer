@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:trailer/controller/homeController.dart';
+import 'package:trailer/controller/trailistController.dart';
 import 'package:trailer/views/search.dart';
 import 'package:trailer/widget/locationCard.dart';
 
@@ -16,6 +17,7 @@ class HomeView extends GetView<HomeController> {
     "cloudy": "☁️",
   }; 
   Widget build(BuildContext context) {
+    TrailistController trailistController = Get.find<TrailistController>();
     return  
     FutureBuilder(
       future: controller.setLocations(),
@@ -150,6 +152,7 @@ class HomeView extends GetView<HomeController> {
                               children: [
                                 InkWell(
                                   onTap: (){
+                                    trailistController.documentId = "AEotD60el35tWOaPTdhv";
                                     Get.toNamed('/trailist', preventDuplicates:false);
                                   },
                                   child: Stack(children: [
@@ -185,7 +188,10 @@ class HomeView extends GetView<HomeController> {
                                 ),
                                 SizedBox(width:width*0.03),
                                 InkWell(
-                                  onTap: (){ Get.toNamed('/trailist', preventDuplicates:false);},
+                                  onTap: (){ 
+                                    trailistController.documentId = "R3nTf12LPo5pZrmNqg7t";
+                                    Get.toNamed('/trailist', preventDuplicates:false);
+                                    },
                                   child: Stack(children: [
                                     ClipRRect(
                                         borderRadius: BorderRadius.circular(8),

@@ -14,7 +14,7 @@ class TrailistView extends GetView<TrailistController> {
 
   @override
   Widget build(BuildContext context) {
-    var document = FirebaseFirestore.instance.collection('Trailist').doc('${favoriteController.currentTrailist}').snapshots();
+    var document = FirebaseFirestore.instance.collection('Trailist').doc('${controller.documentId}').snapshots();
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       stream: document,
       builder: (context, snapshot) {

@@ -9,8 +9,6 @@ class TrailistController extends GetxController{
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
-  //Map<String, String> likeList = {};
-  //Map<String, Location> trailist = {};
 
   late User _user;
   User get user => _user;
@@ -42,5 +40,13 @@ class TrailistController extends GetxController{
       });
     });*/
   }
+   Future<void> updateName(String newName) async{
+    CollectionReference trailist = FirebaseFirestore.instance.collection('Trailist');
+    await trailist
+        .doc(documentId)
+        .update({'trailistName': newName})
+        .then((value) => print("trailist name Updated"))
+        .catchError((error) => print("Failed to update user: $error"));
 
+   }
 }

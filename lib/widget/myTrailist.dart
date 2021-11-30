@@ -17,8 +17,8 @@ class _MyTrailistCard extends State<MyTrailistCard> {
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
 
-  //TrailistController trailistController = Get.find<TrailistController>();
-  FavoritesController favoriteController = Get.find<FavoritesController>();
+  TrailistController trailistController = Get.find<TrailistController>();
+  //FavoritesController favoriteController = Get.find<FavoritesController>();
 
   /*Future<void>?setTrailist() async{
     print("trailist 셋팅!!");
@@ -67,9 +67,7 @@ class _MyTrailistCard extends State<MyTrailistCard> {
             children: [
               InkWell(
                 onTap: (){
-                  favoriteController.currentTrailist = widget.documentID;
-                  //trailistController.update();
-                  //trailistController.setTrailist();
+                 trailistController.documentId= widget.documentID;
                   Get.toNamed('/trailist', preventDuplicates:false);
                 },
                 child: Stack(

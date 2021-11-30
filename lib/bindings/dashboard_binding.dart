@@ -7,6 +7,7 @@ import 'package:trailer/controller/favoritesController.dart';
 import 'package:trailer/controller/homeController.dart';
 import 'package:trailer/controller/loginController.dart';
 import 'package:trailer/controller/searchController.dart';
+import 'package:trailer/controller/trailistController.dart';
 
  class DashboardBinding extends Bindings{
   @override
@@ -18,5 +19,6 @@ import 'package:trailer/controller/searchController.dart';
     Get.put<FavoritesController>(FavoritesController());
     Get.put<DetailController>(DetailController());
     Get.put<DashboardController>(DashboardController());
+    Get.put<TrailistController>(TrailistController());
   }
  }

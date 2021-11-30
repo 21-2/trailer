@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:trailer/controller/favoritesController.dart';
 import 'package:trailer/controller/trailistController.dart';
 import 'package:trailer/widget/trailier.dart';
 
@@ -9,12 +8,11 @@ class SetTrailist extends GetView<TrailistController>{
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
 
-  FavoritesController favoriteController = Get.find<FavoritesController>();
 
   String date='2021.10.10 (SUN)';
 
   Widget build(BuildContext context) {
-    var document = FirebaseFirestore.instance.collection('Trailist').doc('${favoriteController.currentTrailist}').snapshots();
+    var document = FirebaseFirestore.instance.collection('Trailist').doc('${controller.documentId}').snapshots();
     var nameController = TextEditingController();
 
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
@@ -87,7 +85,7 @@ class SetTrailist extends GetView<TrailistController>{
                         SizedBox(height: 20),
                         ElevatedButton(
                             onPressed: (){
-                              favoriteController.updateName(nameController.text);
+                              controller.updateName(nameController.text);
                             },
                             child: Ink(
                               decoration: const BoxDecoration(
