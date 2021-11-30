@@ -58,9 +58,9 @@ class _MyLocationCard extends State<MyLocationCard> {
                     },
                 ),
                 SizedBox(height: height * 0.02),
-                Text(data['locationName'], style: TextStyle(fontSize: 13)),
+                Text(data!['locationName'], style: TextStyle(fontSize: 13)),
                 SizedBox(height: height * 0.008),
-                Text(data['city'],
+                Text(data!['city'],
                     style: TextStyle(fontSize: 12)),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.start,
@@ -76,7 +76,7 @@ class _MyLocationCard extends State<MyLocationCard> {
                         _toggleFavorite();
                       },
                     ),
-                    Text(data['likes'].toString(), style: TextStyle(fontWeight: FontWeight.bold))
+                    Text(data!['likes'].toString(), style: TextStyle(fontWeight: FontWeight.bold))
                   ],
                 ),
               ],
