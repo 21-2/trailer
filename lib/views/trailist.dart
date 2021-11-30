@@ -41,7 +41,7 @@ class TrailistView extends GetView<TrailistController> {
                 ]),
                 child: Stack(children: [
                   Image(
-                    image: NetworkImage(data!['cover']),
+                    image: NetworkImage(data!['trailistCover']),
                     fit: BoxFit.cover,
                   ),
                   Positioned(

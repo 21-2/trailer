@@ -52,6 +52,8 @@ class _MyTrailistCard extends State<MyTrailistCard> {
 
   @override
   Widget build(BuildContext context) {
+    print("my trailist card!");
+    print(widget.documentID);
     var document = FirebaseFirestore.instance.collection('Trailist').doc(widget.documentID).snapshots();
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       stream: document,
@@ -75,7 +77,7 @@ class _MyTrailistCard extends State<MyTrailistCard> {
                     ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image(
-                            image: NetworkImage(data!['cover']),
+                            image: NetworkImage(data!['trailistCover']),
                             width: width * 0.9,
                             height: height * 0.22,
                             fit: BoxFit.cover)),
@@ -85,7 +87,7 @@ class _MyTrailistCard extends State<MyTrailistCard> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(height: height * 0.02),
-                          Text(data['trailistName'],
+                          Text(data!['trailistName'],
                               style: TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 15,
@@ -118,7 +120,7 @@ class _MyTrailistCard extends State<MyTrailistCard> {
                             children: [
                               Icon(Icons.location_on, color: Colors.white, size: 12),
                               SizedBox(width: width * 0.01),
-                              Text('${data["locations"].length} 곳',
+                              Text('4 곳',//${data["locations"].length}
                                   style: TextStyle(
                                       fontWeight: FontWeight.w300,
                                       fontSize: 12,
