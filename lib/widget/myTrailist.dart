@@ -52,8 +52,6 @@ class _MyTrailistCard extends State<MyTrailistCard> {
 
   @override
   Widget build(BuildContext context) {
-    print("my trailist card!");
-    print(widget.documentID);
     var document = FirebaseFirestore.instance.collection('Trailist').doc(widget.documentID).snapshots();
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       stream: document,
@@ -120,7 +118,7 @@ class _MyTrailistCard extends State<MyTrailistCard> {
                             children: [
                               Icon(Icons.location_on, color: Colors.white, size: 12),
                               SizedBox(width: width * 0.01),
-                              Text('4 곳',//${data["locations"].length}
+                              Text('${data["locations"].length} 곳',
                                   style: TextStyle(
                                       fontWeight: FontWeight.w300,
                                       fontSize: 12,

@@ -11,9 +11,15 @@ class SetTrailist extends GetView<TrailistController>{
 
   String date='2021.10.10 (SUN)';
 
+  Widget trailierList(List<dynamic> trailier){
+    //${data["locations"].length}
+    return Column(children: trailier.map((item) => TrailerCard(documentID: item)).toList());
+  }
+
   Widget build(BuildContext context) {
     var document = FirebaseFirestore.instance.collection('Trailist').doc('${controller.documentId}').snapshots();
     var nameController = TextEditingController();
+    var emailController = TextEditingController();
 
     return StreamBuilder<DocumentSnapshot<Map<String, dynamic>>>(
       stream: document,
@@ -67,25 +73,20 @@ class SetTrailist extends GetView<TrailistController>{
                           ],
                         ),
                         TextField(
+                          controller: emailController,
                             decoration: InputDecoration(
                               labelText: '이메일을 입력하세요',
                             )
                         ),
-                        TrailerCard(documentID: data['participants'][0]),
-                        TrailerCard(documentID: data['participants'][1]),
-                        TrailerCard(documentID: data['participants'][2]),
-                        SizedBox(
-                          width: 20,
-                          child: Column(
-                            children: [
-
-                            ]
-                          )
-                        ),
+                        trailierList(data['participants']),
                         SizedBox(height: 20),
                         ElevatedButton(
                             onPressed: (){
                               controller.updateName(nameController.text);
+                              if(emailController.text != ''){
+                                controller.addTrailer(emailController.text);
+                              }
+
                             },
                             child: Ink(
                               decoration: const BoxDecoration(
