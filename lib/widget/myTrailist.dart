@@ -75,7 +75,7 @@ class _MyTrailistCard extends State<MyTrailistCard> {
                     ClipRRect(
                         borderRadius: BorderRadius.circular(8),
                         child: Image(
-                            image: NetworkImage(data!['cover']),
+                            image: NetworkImage(data!['trailistCover']),
                             width: width * 0.9,
                             height: height * 0.22,
                             fit: BoxFit.cover)),

@@ -24,7 +24,7 @@ class TrailistView extends GetView<TrailistController> {
         var data = snapshot.data!.data();
         //var size = data!['locations'].length();
         String start = data!['period']['start'].toDate().toString().split(" ")[0];
-        String end = data!['period']['end'].toDate().toString().split(" ")[0];
+        String end = data['period']['end'].toDate().toString().split(" ")[0];
         String date = start + ' ~ ' + end;
 
         return Scaffold(
@@ -41,7 +41,7 @@ class TrailistView extends GetView<TrailistController> {
                 ]),
                 child: Stack(children: [
                   Image(
-                    image: NetworkImage(data!['cover']),
+                    image: NetworkImage(data['trailistCover']),
                     fit: BoxFit.cover,
                   ),
                   Positioned(
@@ -149,7 +149,7 @@ class TrailistView extends GetView<TrailistController> {
                                           ]),
                                           SizedBox(height: 20),
                                           Text(
-                                            data!['locations'][0]['date'].toDate().toString().split(" ")[0],
+                                            data['locations'][0]['date'].toDate().toString().split(" ")[0],
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 20,
@@ -157,9 +157,9 @@ class TrailistView extends GetView<TrailistController> {
                                                     254, 113, 117, 100)),
                                           ),
                                           TrailistLocationListCard(documentID: data['locations'][0]['locationId'],
-                                              date: data!['locations'][0]['date'].toDate().toString().split(" ")[1]),
+                                              date: data['locations'][0]['date'].toDate().toString().split(" ")[1]),
                                           Text(
-                                            data!['locations'][1]['date'].toDate().toString().split(" ")[0],
+                                            data['locations'][1]['date'].toDate().toString().split(" ")[0],
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 20,
@@ -167,9 +167,9 @@ class TrailistView extends GetView<TrailistController> {
                                                     254, 113, 117, 100)),
                                           ),
                                           TrailistLocationListCard(documentID: data['locations'][1]['locationId'],
-                                              date: data!['locations'][1]['date'].toDate().toString().split(" ")[1]),
+                                              date: data['locations'][1]['date'].toDate().toString().split(" ")[1]),
                                           Text(
-                                            data!['locations'][2]['date'].toDate().toString().split(" ")[0],
+                                            data['locations'][2]['date'].toDate().toString().split(" ")[0],
                                             style: TextStyle(
                                                 fontWeight: FontWeight.w700,
                                                 fontSize: 20,
@@ -177,7 +177,7 @@ class TrailistView extends GetView<TrailistController> {
                                                     254, 113, 117, 100)),
                                           ),
                                           TrailistLocationListCard(documentID: data['locations'][2]['locationId'],
-                                              date: data!['locations'][2]['date'].toDate().toString().split(" ")[1]),
+                                              date: data['locations'][2]['date'].toDate().toString().split(" ")[1]),
                                         ])))
                           ]))),
             ],
