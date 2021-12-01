@@ -12,6 +12,11 @@ class TrailistView extends GetView<TrailistController> {
 
   FavoritesController favoriteController = Get.find<FavoritesController>();
 
+  /*Widget setTrailer(){
+    int count = 0;
+    return ${data["locations"].length}
+  }*/
+
   @override
   Widget build(BuildContext context) {
     var document = FirebaseFirestore.instance.collection('Trailist').doc('${controller.documentId}').snapshots();
@@ -81,7 +86,8 @@ class TrailistView extends GetView<TrailistController> {
                           Text(data['trailistName'],
                               style: TextStyle(fontSize: 20, color: Colors.white)),
                           SizedBox(height: 10),
-                          Row(children: [
+                          Row(
+                              children: [
                             Icon(Icons.person, color: Colors.white),
                             SizedBox(width: 5),
                             ClipRRect(
@@ -157,7 +163,7 @@ class TrailistView extends GetView<TrailistController> {
                                                     254, 113, 117, 100)),
                                           ),
                                           TrailistLocationListCard(documentID: data['locations'][0]['locationId'],
-                                              date: data['locations'][0]['date'].toDate().toString().split(" ")[1]),
+                                              date: data['locations'][0]['date'].toDate().toString()),
                                           Text(
                                             data['locations'][1]['date'].toDate().toString().split(" ")[0],
                                             style: TextStyle(
@@ -167,7 +173,7 @@ class TrailistView extends GetView<TrailistController> {
                                                     254, 113, 117, 100)),
                                           ),
                                           TrailistLocationListCard(documentID: data['locations'][1]['locationId'],
-                                              date: data['locations'][1]['date'].toDate().toString().split(" ")[1]),
+                                              date: data['locations'][1]['date'].toDate().toString()),
                                           Text(
                                             data['locations'][2]['date'].toDate().toString().split(" ")[0],
                                             style: TextStyle(
@@ -177,7 +183,7 @@ class TrailistView extends GetView<TrailistController> {
                                                     254, 113, 117, 100)),
                                           ),
                                           TrailistLocationListCard(documentID: data['locations'][2]['locationId'],
-                                              date: data['locations'][2]['date'].toDate().toString().split(" ")[1]),
+                                              date: data['locations'][2]['date'].toDate().toString()),
                                         ])))
                           ]))),
             ],

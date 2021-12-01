@@ -14,7 +14,7 @@ class MyLocationCard extends StatefulWidget {
 class _MyLocationCard extends State<MyLocationCard> {
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
-  var favorited = false;
+  var favorited = true;
 
   DetailController detailController = Get.find<DetailController>();
 
