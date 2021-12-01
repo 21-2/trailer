@@ -9,6 +9,9 @@ class TrailistController extends GetxController{
   FirebaseAuth firebaseAuth = FirebaseAuth.instance;
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
+  List<dynamic> locationList = [];
+  List<dynamic> geolocationList = [];
+
 
   late User _user;
   User get user => _user;
@@ -74,7 +77,9 @@ class TrailistController extends GetxController{
         .update({'participants': FieldValue.arrayRemove([trailier])})
         .then((value) => print("trailer deleted"))
         .catchError((error) => print("Failed to add trailer: $error"));
+  }
 
+  Future<void> getGeolocation() async{
 
   }
 }
