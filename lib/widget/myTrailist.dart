@@ -30,23 +30,6 @@ class _MyTrailistCard extends State<MyTrailistCard> {
         setCover();
 
   }
-
-  Future<void>?setCover() async{
-    print("set cover!!");
-    print(currentTrailist.locations![0]['locationId'].toString());
-    await FirebaseFirestore.instance
-        .collection('Locations')
-        .doc(currentTrailist.locations![0]['locationId'].toString())
-        .get()
-        .then((DocumentSnapshot doc) {
-          if(doc.exists){
-            img = doc['img'];
-            currentTrailist.trailistCover = img;
-            print(img);
-            print("우ㅠㅣ는 이미지!!");
-          }
-
-    });
   }*/
 
 

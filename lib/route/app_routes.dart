@@ -14,6 +14,7 @@ abstract class Routes{
   static const TRAILIST = _Paths.TRAILIST;
   static const SETTRAILIST = _Paths.SETTRAILIST;
   static const CART = _Paths.CART;
+  static const GOOGLEMAP = _Paths.GOOGLEMAP;
 }
 
 abstract class _Paths {
@@ -28,4 +29,5 @@ abstract class _Paths {
   static const TRAILIST = '/trailist';
   static const SETTRAILIST = '/setTrailist';
   static const CART = '/cart';
+  static const GOOGLEMAP = '/googlemap';
 }

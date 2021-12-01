@@ -12,6 +12,7 @@ import 'package:trailer/views/cart.dart';
 import 'package:trailer/views/dashboard.dart';
 import 'package:trailer/views/details.dart';
 import 'package:trailer/views/favorites.dart';
+import 'package:trailer/views/googleMap.dart';
 import 'package:trailer/views/home.dart';
 import 'package:trailer/views/login.dart';
 import 'package:trailer/views/profile.dart';
@@ -90,6 +91,11 @@ class AppPages{
             name: _Paths.CART,
             page: () => CartView(),
             binding: CartBinding(),
+          ), 
+          GetPage(
+            name: _Paths.GOOGLEMAP,
+            page: () => GoogleMap(),
+            binding: TrailistBinding(),
           )
 
   ];

@@ -128,7 +128,11 @@ class TrailistView extends GetView<TrailistController> {
                               icon: Icon(Icons.map,
                                   color: Colors.white,
                                   size: 30.0),
-                              onPressed: () {})
+                              onPressed: () {
+                                controller.locationList = data['locations'];
+                                controller.getGeolocation();
+                                Get.toNamed('/googlemap');
+                              })
                         ],
                       )),
                 ]),
