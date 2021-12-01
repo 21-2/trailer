@@ -10,6 +10,7 @@ import 'package:trailer/bindings/trailist_binding.dart';
 import 'package:trailer/views/dashboard.dart';
 import 'package:trailer/views/details.dart';
 import 'package:trailer/views/favorites.dart';
+import 'package:trailer/views/googleMap.dart';
 import 'package:trailer/views/home.dart';
 import 'package:trailer/views/login.dart';
 import 'package:trailer/views/profile.dart';
@@ -84,6 +85,11 @@ class AppPages{
             page: () => SetTrailist(),
             binding: TrailistBinding(), //trailist binding 같이사용!?
           ),
+          GetPage(
+            name: _Paths.GOOGLEMAP,
+            page: () => GoogleMap(),
+            binding: TrailistBinding(),
+          )
 
   ];
 
