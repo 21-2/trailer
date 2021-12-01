@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:trailer/controller/cartController.dart';
 import 'package:trailer/controller/detailController.dart';
 import 'package:trailer/controller/favoritesController.dart';
 import 'package:trailer/controller/homeController.dart';
@@ -11,6 +12,6 @@ class HomeBinding extends Bindings{
     Get.put(LoginController());
     Get.put<DetailController>(DetailController());
     Get.put<TrailistController>(TrailistController());
-
+    Get.put<CartController>(CartController());
   }
 }

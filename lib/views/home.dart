@@ -80,7 +80,7 @@ class HomeView extends GetView<HomeController> {
                     child: IconButton(
                       color: Color.fromRGBO(254, 113, 117, 100),
                       icon: ImageIcon(AssetImage('lib/images/shoppingCart.png')),
-                      onPressed: () {print("hello ${controller.userModel.id}");},
+                      onPressed: ()=>{Get.toNamed("/cart")},
                     ))
               ],
             ),

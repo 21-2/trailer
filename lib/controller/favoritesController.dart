@@ -4,11 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:trailer/controller/homeController.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:trailer/model/Trailist.dart';
 import 'package:trailer/model/User.dart';
 import 'package:trailer/widget/myLocationCard.dart';
 import 'package:trailer/widget/myTrailist.dart';
-import 'package:trailer/widget/trailist.dart';
 
 class FavoritesController extends GetxController {
   HomeController homeController = Get.find<HomeController>();

@@ -1,6 +1,7 @@
  
  import 'package:get/get.dart';
 import 'package:trailer/controller/aiController.dart';
+import 'package:trailer/controller/cartController.dart';
 import 'package:trailer/controller/dashboardController.dart';
 import 'package:trailer/controller/detailController.dart';
 import 'package:trailer/controller/favoritesController.dart';
@@ -20,5 +21,6 @@ import 'package:trailer/controller/trailistController.dart';
     Get.put<DetailController>(DetailController());
     Get.put<DashboardController>(DashboardController());
     Get.put<TrailistController>(TrailistController());
+    Get.put<CartController>(CartController());
   }
  }

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:trailer/bindings/cart_binding.dart';
 import 'package:trailer/bindings/dashboard_binding.dart';
 import 'package:trailer/bindings/detail_binding.dart';
 import 'package:trailer/bindings/favorites_binding.dart';
@@ -7,6 +8,7 @@ import 'package:trailer/bindings/home_binding.dart';
 import 'package:trailer/bindings/search_binding.dart';
 import 'package:trailer/bindings/search_results_binding.dart';
 import 'package:trailer/bindings/trailist_binding.dart';
+import 'package:trailer/views/cart.dart';
 import 'package:trailer/views/dashboard.dart';
 import 'package:trailer/views/details.dart';
 import 'package:trailer/views/favorites.dart';
@@ -84,6 +86,11 @@ class AppPages{
             page: () => SetTrailist(),
             binding: TrailistBinding(), //trailist binding 같이사용!?
           ),
+          GetPage(
+            name: _Paths.CART,
+            page: () => CartView(),
+            binding: CartBinding(),
+          )
 
   ];
 
