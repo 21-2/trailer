@@ -49,6 +49,10 @@ class Map extends GetView<TrailistController> {
     final Set<Marker> markers = new Set();
 
     for (int i = 0; i < controller.locations.length; i++) {
+      print("get markers!!");
+      print(controller.locations[i].locationName);
+      print(controller.locations[i].geolocation.latitude.toString());
+      print(controller.locations[i].geolocation.longitude.toString());
       markers.add(Marker(
         //add first marker
         markerId: MarkerId(i.toString()),

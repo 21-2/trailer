@@ -82,6 +82,8 @@ class TrailistController extends GetxController{
   }
 
   Future<void> getGeolocation() async {
+    locations = [];
+
     for (int i = 0; i < locationList.length; i++) {
       String locationID = locationList[i]['locationId'];
 
