@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
+import 'package:trailer/model/Locations.dart';
 import 'package:trailer/model/User.dart';
 
 class TrailistController extends GetxController{
@@ -11,12 +12,14 @@ class TrailistController extends GetxController{
 
   List<dynamic> locationList = [];
   List<dynamic> geolocationList = [];
+  List<Locations> locations = [];
 
 
   late User _user;
   User get user => _user;
 
   late String documentId = "";
+  late String currentTrailistName = "";
 
   @override 
   void onInit() async{
@@ -51,7 +54,6 @@ class TrailistController extends GetxController{
         .update({'trailistName': newName})
         .then((value) => print("trailist name Updated"))
         .catchError((error) => print("Failed to update user: $error"));
-
    }
 
    Future<void> addTrailer(String newTrailier) async {
@@ -79,7 +81,22 @@ class TrailistController extends GetxController{
         .catchError((error) => print("Failed to add trailer: $error"));
   }
 
-  Future<void> getGeolocation() async{
+  Future<void> getGeolocation() async {
+    for (int i = 0; i < locationList.length; i++) {
+      String locationID = locationList[i]['locationId'];
 
+      FirebaseFirestore.instance
+          .collection('Location')
+          .doc(locationID)
+          .get()
+          .then((doc) {
+        if (doc.exists) {
+          print(doc['locationName']);
+          Locations tempLocation = Locations.fromSnapshot(doc);
+          locations.add(tempLocation);
+          //locations.add(documentSnapshot.dat);
+        }
+      });
+    }
   }
 }
