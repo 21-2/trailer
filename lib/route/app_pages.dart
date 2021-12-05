@@ -9,6 +9,7 @@ import 'package:trailer/bindings/search_binding.dart';
 import 'package:trailer/bindings/search_results_binding.dart';
 import 'package:trailer/bindings/trailist_binding.dart';
 import 'package:trailer/views/cart.dart';
+import 'package:trailer/views/cart2.dart';
 import 'package:trailer/views/dashboard.dart';
 import 'package:trailer/views/details.dart';
 import 'package:trailer/views/favorites.dart';
@@ -27,7 +28,7 @@ part 'app_routes.dart';
 class AppPages{
   AppPages._();
 
-  static const INITIAL = _Paths.DASHBOARD;
+  static const INITIAL = _Paths.LOGIN;
 
   static final routes = [
 
@@ -91,7 +92,12 @@ class AppPages{
             name: _Paths.CART,
             page: () => CartView(),
             binding: CartBinding(),
-          ), 
+          ),
+          GetPage(
+            name: _Paths.CART2,
+            page: () => CartView2(),
+            binding: CartBinding(),
+          ),  
           GetPage(
             name: _Paths.GOOGLEMAP,
             page: () => GoogleMap(),

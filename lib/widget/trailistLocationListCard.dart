@@ -45,13 +45,13 @@ class _TrailistLocationListCard extends State<TrailistLocationListCard> {
             children: [
               Row(
                 children: [
-                  Text(widget.date.split(" ")[1].split(".")[0]),
+               
                   SizedBox(width: 5),
                   InkWell(
                       child: ClipRRect(
-                          borderRadius: BorderRadius.circular(5),
+                          borderRadius: BorderRadius.circular(8),
                           child: Image(
-                              image: NetworkImage(data!['img']), width: 50)),
+                              image: NetworkImage(data!['img']), width: 50, height: 50)),
                       onTap: () {
                         detailController.documentId = widget.documentID;
                         detailController.update();
@@ -62,9 +62,9 @@ class _TrailistLocationListCard extends State<TrailistLocationListCard> {
                   SizedBox(width: 10),
                   InkWell(
                     child: SizedBox(
-                      width: 160,
+                      width: width*0.55,
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(data['locationName'],
@@ -91,13 +91,14 @@ class _TrailistLocationListCard extends State<TrailistLocationListCard> {
                   ),
                 ],
               ),
-              SizedBox(height: 15),
-              Divider(
+              SizedBox(height:height*0.02),
+               Divider(
                 height: 10.0,
                 color: Colors.grey[850],
                 thickness: 0.5,
                 endIndent: 20.0,
-              ),
+               )
+
             ],
           ),
         );
@@ -134,13 +135,13 @@ void FlutterDialog(BuildContext context) {
                   style: TextStyle(fontSize: 13)),
               Row(
                 children: [
-                  FlatButton(
+                  ElevatedButton(
                     child: Text('날짜 재설정'),
                     onPressed: (){
                       showDatePickerPop(context);
                     }
                   ),
-                  FlatButton(
+                  ElevatedButton(
                       child: Text('시간 재설정'),
                       onPressed: (){
                         showTimePickerPop(context);
@@ -151,13 +152,13 @@ void FlutterDialog(BuildContext context) {
             ],
           ),
           actions: <Widget>[
-            FlatButton(
+            ElevatedButton(
               child: Text("취소"),
               onPressed: () {
                 Navigator.pop(context);
               },
             ),
-            FlatButton(
+            ElevatedButton(
               child: Text("저장"),
               onPressed: () {
                 Navigator.pop(context);
