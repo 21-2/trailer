@@ -100,7 +100,7 @@ class AppPages{
           ),  
           GetPage(
             name: _Paths.GOOGLEMAP,
-            page: () => GoogleMap(),
+            page: () => Map(),
             binding: TrailistBinding(),
           )
 

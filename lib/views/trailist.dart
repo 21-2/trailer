@@ -107,6 +107,7 @@ class TrailistView extends GetView<TrailistController> {
                                   size: 30.0),
                               onPressed: () {
                                 controller.locationList = data['locations'];
+                                controller.currentTrailistName = data['trailistName'];
                                 controller.getGeolocation();
                                 Get.toNamed('/googlemap');
                               })
