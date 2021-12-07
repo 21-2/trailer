@@ -2,7 +2,6 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:trailer/controller/favoritesController.dart';
 
-
 class Favorites extends GetView<FavoritesController> {
   final _searchBar = TextEditingController();
   var width = Get.context!.mediaQuerySize.width;
@@ -59,41 +58,22 @@ class Favorites extends GetView<FavoritesController> {
 }
 
 Widget firstTab() {
-  return FutureBuilder(
-   future: FavoritesController.setLocations(),
-    builder: (context, snapshot) {
-       if(snapshot.connectionState == ConnectionState.waiting) 
-         return 
-         Container(
-           child: Column(
-             mainAxisAlignment: MainAxisAlignment.center,
-             crossAxisAlignment: CrossAxisAlignment.center,
-             children: [
-               CircularProgressIndicator(
-                 backgroundColor: Color.fromRGBO(232, 232, 232, 1),
-               ),
-             ],
-           ),
-         );     
-      return SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(15, 30, 15, 0),
-              child: FavoritesController.setLocationCard(),
-            ),
-          );
-    }
+  return SingleChildScrollView(
+    child: Padding(
+      padding: const EdgeInsets.fromLTRB(15, 30, 15, 0),
+      child: FavoritesController.setLocationCard(),
+    ),
   );
 }
 
 Widget secondTab() {
-  return FutureBuilder(
-    future: FavoritesController.setTrailists(),
-    builder: (context, snapshot) {
-      return SingleChildScrollView(
-          child: Padding(
-        padding: const EdgeInsets.fromLTRB(15, 30, 15, 0),
-        child: FavoritesController.setTrailistCard(),
-      ));
-    }
+  return SingleChildScrollView(
+      child: Padding(
+          padding: const EdgeInsets.fromLTRB(15, 30, 15, 0),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: FavoritesController.trailist
+          ),
+      )
   );
 }

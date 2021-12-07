@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:trailer/controller/favoritesController.dart';
 import 'package:trailer/controller/trailistController.dart';
 import 'package:trailer/widget/trailistLocationListCard.dart';
+import 'package:intl/intl.dart';
 
 class TrailistView extends GetView<TrailistController> {
   var width = Get.context!.mediaQuerySize.width;
@@ -82,39 +83,15 @@ class TrailistView extends GetView<TrailistController> {
                                   fontWeight: FontWeight.w700,
                                   fontSize: 13,
                                   color: Colors.white)),
-                          SizedBox(height: 3),
+                          SizedBox(height: 5),
                           Text(data['trailistName'],
                               style: TextStyle(fontSize: 20, color: Colors.white)),
-                          SizedBox(height: 10),
+                          SizedBox(height: 8),
                           Row(
                               children: [
                             Icon(Icons.person, color: Colors.white),
-                            SizedBox(width: 5),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(50.0),
-                              child: Image.network(
-                                'https://blog.kakaocdn.net/dn/bftRiB/btqAjaghSBk/5CcN9W5qyCU8HLylVYcXb1/img.png',
-                                height: 30.0,
-                                width: 30.0,
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(50.0),
-                              child: Image.network(
-                                'https://blog.kakaocdn.net/dn/bftRiB/btqAjaghSBk/5CcN9W5qyCU8HLylVYcXb1/img.png',
-                                height: 30.0,
-                                width: 30.0,
-                              ),
-                            ),
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(50.0),
-                              child: Image.network(
-                                'https://blog.kakaocdn.net/dn/bftRiB/btqAjaghSBk/5CcN9W5qyCU8HLylVYcXb1/img.png',
-                                height: 30.0,
-                                width: 30.0,
-                              ),
-                            )
                           ]),
+                            SizedBox(height: 10),
                         ],
                       )),
                   Positioned(
@@ -130,6 +107,7 @@ class TrailistView extends GetView<TrailistController> {
                                   size: 30.0),
                               onPressed: () {
                                 controller.locationList = data['locations'];
+                                controller.currentTrailistName = data['trailistName'];
                                 controller.getGeolocation();
                                 Get.toNamed('/googlemap');
                               })
@@ -147,7 +125,7 @@ class TrailistView extends GetView<TrailistController> {
                             SingleChildScrollView(
                                 child: Padding(
                                     padding:
-                                        const EdgeInsets.fromLTRB(15, 10, 15, 0),
+                                        const EdgeInsets.fromLTRB(15, 20, 0, 0),
                                     child: Column(
                                         mainAxisAlignment: MainAxisAlignment.start,
                                         crossAxisAlignment:
@@ -157,35 +135,73 @@ class TrailistView extends GetView<TrailistController> {
                                             Icon(Icons.location_pin),
                                             Text('3곳'),
                                           ]),
-                                          SizedBox(height: 20),
-                                          Text(
-                                            data['locations'][0]['date'].toDate().toString().split(" ")[0],
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 20,
-                                                color: Color.fromRGBO(
-                                                    254, 113, 117, 100)),
+                                          SizedBox(height: height*0.03),
+                                          Row(
+                                            children: [
+                                              Text(
+                                                data['locations'][0]['date'].toDate().toString().substring(8,10),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 25,
+                                                    color: Color(0xffFB7C71)),
+                                              ),
+                                              SizedBox(width:width*0.02),
+                                              Text(
+                                                DateFormat('EEEE').format(data['locations'][0]['date'].toDate()),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 20,
+                                                    color: Color(0xffFB7C71)),
+                                              ),
+                                            ],
                                           ),
+                                          SizedBox(height: height*0.01),
                                           TrailistLocationListCard(documentID: data['locations'][0]['locationId'],
                                               date: data['locations'][0]['date'].toDate().toString()),
-                                          Text(
-                                            data['locations'][1]['date'].toDate().toString().split(" ")[0],
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 20,
-                                                color: Color.fromRGBO(
-                                                    254, 113, 117, 100)),
+                                          SizedBox(height: 15),
+                                         Row(
+                                            children: [
+                                              Text(
+                                                data['locations'][1]['date'].toDate().toString().substring(8,10),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 25,
+                                                    color: Color(0xffFB7C71)),
+                                              ),
+                                              SizedBox(width:width*0.02),
+                                              Text(
+                                                DateFormat('EEEE').format(data['locations'][1]['date'].toDate()),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 20,
+                                                    color: Color(0xffFB7C71)),
+                                              ),
+                                            ],
                                           ),
+                                           SizedBox(height: height*0.01),
                                           TrailistLocationListCard(documentID: data['locations'][1]['locationId'],
                                               date: data['locations'][1]['date'].toDate().toString()),
-                                          Text(
-                                            data['locations'][2]['date'].toDate().toString().split(" ")[0],
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.w700,
-                                                fontSize: 20,
-                                                color: Color.fromRGBO(
-                                                    254, 113, 117, 100)),
+                                          SizedBox(height: 15),
+                                           Row(
+                                            children: [
+                                              Text(
+                                                data['locations'][2]['date'].toDate().toString().substring(8,10),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 25,
+                                                    color: Color(0xffFB7C71)),
+                                              ),
+                                              SizedBox(width:width*0.02),
+                                              Text(
+                                                DateFormat('EEEE').format(data['locations'][2]['date'].toDate()),
+                                                style: TextStyle(
+                                                    fontWeight: FontWeight.w700,
+                                                    fontSize: 20,
+                                                    color: Color(0xffFB7C71)),
+                                              ),
+                                            ],
                                           ),
+                                           SizedBox(height: height*0.01),
                                           TrailistLocationListCard(documentID: data['locations'][2]['locationId'],
                                               date: data['locations'][2]['date'].toDate().toString()),
                                         ])))

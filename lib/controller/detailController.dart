@@ -80,8 +80,13 @@ class DetailController extends GetxController{
           }
         }
 
+  }
 
-
+  addToCart() async{
+    homeController.userModel.cart!.add(documentId);
+    firebase.collection('Users').doc(homeController.userModel.id).update({
+      "cart" : homeController.userModel.cart
+    });
   }
   
 

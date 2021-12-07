@@ -109,8 +109,9 @@ class DetailView extends GetView<DetailController> {
                    Container(
                   decoration: BoxDecoration(boxShadow: [BoxShadow(color: Colors.grey.shade200, spreadRadius: 5, blurRadius: 5, offset: Offset(2,6))]),
                     child: ElevatedButton(
-                      onPressed: ()=>{
-                        print(controller.currentLocation.reviews)
+                      onPressed: (){
+                        controller.addToCart();
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("장바구니에 담았습니다!💖")));
                       }, child: Text('장바구니에 담기', style: TextStyle(color: Colors.white, fontSize: 15)), 
                       style: ButtonStyle(
                         fixedSize: MaterialStateProperty.all(Size.fromWidth(width*0.4)),
@@ -216,16 +217,13 @@ class DetailView extends GetView<DetailController> {
                   Icon(Icons.location_on_outlined, color: Colors.grey.shade500),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(8, 12,8,10),
-                    child: Text('${controller.currentLocation.address}',),
+                    child: 
+                    Container(
+                      width: width*0.7,
+                      child: Text('${controller.currentLocation.address}', softWrap: true)
+                      ),
                   )
                 ],),
-               /*Row(children: [
-                 Icon(Icons.schedule_outlined, color: Colors.grey.shade500),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(8, 12,8,10),
-                    child: Text('매일 10:00 ~ 22:00',),
-                  )
-                ],),*/
                 Row(children: [ 
                   Icon(FontAwesomeIcons.instagram, color: Colors.grey.shade500),
                   Padding(
