@@ -5,6 +5,7 @@ import 'package:trailer/controller/searchController.dart';
 import 'package:trailer/widget/myTrailist.dart';
 import 'package:trailer/widget/searchlocationCard.dart';
 import 'package:trailer/widget/trailist.dart';
+import 'package:trailer/model/Locations.dart';
 
 class SearchResults extends GetView<SearchController> {
   final _searchBar = TextEditingController();
@@ -92,8 +93,8 @@ class SearchResults extends GetView<SearchController> {
           ),
           body: TabBarView(
             children: [
-              firstTab(),
-              secondTab(),
+              firstTab(controller),
+              secondTab(controller),
             ],
           ),
       )
@@ -101,29 +102,28 @@ class SearchResults extends GetView<SearchController> {
   }
 }
 
-Widget firstTab(){
-  return 
+Widget firstTab(SearchController controller){
+  return
   SingleChildScrollView(
     child: 
     Padding(
       padding: const EdgeInsets.fromLTRB(15,30,15,0),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              SearchLocationCard(),
-              SearchLocationCard(),
-              SearchLocationCard(),
-            ],
-          ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                for (int i=0; i<controller.searchLocationList.length; i++)
+                  SearchLocationCard(result: controller.searchLocationList[i])
+              ],
+            ),
         ],
       ),
     ),
   );
 }
 
-Widget secondTab(){
+Widget secondTab(SearchController controller){
   return SingleChildScrollView(
     child:
     Padding(
@@ -132,13 +132,11 @@ Widget secondTab(){
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              TrailistCard(),
-              TrailistCard(),
-              TrailistCard(),
+              for (int i=0; i<controller.searchTrailistList.length; i++)
+                TrailistCard(result: controller.searchTrailistList[i]),
             ],
           ),
         ],

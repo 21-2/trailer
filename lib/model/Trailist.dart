@@ -8,6 +8,7 @@ class Trailist {
   Map<dynamic, dynamic>? period;
   String? trailistCover;
 
+
   Trailist({
     this.trailistId,
     this.trailistName,  
@@ -35,6 +36,5 @@ class Trailist {
     locations = (snapshot.data() as dynamic)['locations'];
     period = (snapshot.data() as dynamic)['period'];
     trailistCover = (snapshot.data() as dynamic)['trailistCover'];
-
   }
 }

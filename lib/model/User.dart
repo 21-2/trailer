@@ -28,7 +28,6 @@ class UserModel {
       'trailist': trailist,
       'cart' : cart,
       'recentSearch' : recentSearch,
-
     };
   }
 

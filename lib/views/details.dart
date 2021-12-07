@@ -66,11 +66,6 @@ class DetailView extends GetView<DetailController> {
     });
   }
 
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return 

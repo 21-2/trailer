@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:trailer/model/Locations.dart';
 
 class SearchLocationCard extends StatefulWidget{
+  final Locations? result;
+  //SearchLocationCard({Key? key, this.result}) : super(key: key);
+  SearchLocationCard({required this.result});
 
-  @override 
-  _SearchLocationCard createState() => _SearchLocationCard();
+  @override
+  _SearchLocationCardState createState() => _SearchLocationCardState(result: result!);
 }
 
-class _SearchLocationCard extends State<SearchLocationCard>{
+class _SearchLocationCardState extends State<SearchLocationCard>{
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
   var favorited = false;
+
+  Locations result;
+  _SearchLocationCardState({required this.result});
 
    void _toggleFavorite() {
     setState(() {
@@ -24,7 +31,7 @@ class _SearchLocationCard extends State<SearchLocationCard>{
   }
   @override  
   Widget build(BuildContext context){
-    return 
+    return
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
@@ -33,14 +40,17 @@ class _SearchLocationCard extends State<SearchLocationCard>{
             child: 
                 ClipRRect(
                   borderRadius: BorderRadius.circular(5),
-                  child: Image(image: AssetImage('lib/images/loc-card-1.png'), height: height*0.14)
+                  //이미지 안 들어감!!
+                  child: Image(image: NetworkImage(result.img!), height: height*0.14)
                 ),
             onTap: ()=>{Get.toNamed('/details')} //여기에 argument 넣기 
           ),
-          SizedBox(height: height*0.02), 
-          Text("이스케이프 풀 빌라", style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
-          SizedBox(height: height*0.008), 
-          Text('포항시 남구 구룡포', style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12)),
+          SizedBox(height: height*0.02),
+          //Location 이름
+          Text(result.locationName!, style: TextStyle(fontWeight: FontWeight.w500, fontSize: 13)),
+          SizedBox(height: height*0.008),
+          //Location 위치 (지역+동)?
+          Text(result.city!, style: TextStyle(fontWeight: FontWeight.w300, fontSize: 12)),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -52,7 +62,7 @@ class _SearchLocationCard extends State<SearchLocationCard>{
                 Icon(Icons.favorite, color:  Color(0xffFE4D68)) :  Icon(Icons.favorite_border, color: Colors.grey)), 
                 onPressed: (){_toggleFavorite();},
               ),
-              Text("1100", style: TextStyle(fontWeight: FontWeight.bold))
+              Text(result.likes!.toString(), style: TextStyle(fontWeight: FontWeight.bold))
             ],
           ),
         ],

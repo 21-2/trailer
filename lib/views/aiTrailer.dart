@@ -43,7 +43,10 @@ class AiTrailer extends GetView<AiController> {
                         foregroundColor: MaterialStateProperty.all(Colors.transparent),
                         shadowColor: MaterialStateProperty.all(Colors.transparent),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.getImage();
+                        print("AI image result: "+controller.predResult.toString());
+                      },
                       child: Ink(
                         decoration: BoxDecoration(
                             gradient: LinearGradient(colors: [Color(0xfffc96a0), Color(0xfffa9d90), Color(0xfff9a082),],),

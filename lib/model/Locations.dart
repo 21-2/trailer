@@ -11,6 +11,7 @@ class Locations {
   var geolocation;
   int?  likes;
   List<dynamic>? reviews = [];
+  List<dynamic>? tag = [];
 
   Locations({
     this.locationName,
@@ -23,6 +24,7 @@ class Locations {
     this.img,
     this.likes,
     this.reviews,
+    this.tag,
   });
 
   Map<String,dynamic> toMap(){
@@ -37,6 +39,7 @@ class Locations {
       'img' : img,
       'likes' : likes,
       'reviews': reviews,
+      'tag': tag,
     };
   }
 
@@ -51,7 +54,7 @@ class Locations {
     img = (snapshot.data() as dynamic)['img'];
     likes = (snapshot.data() as dynamic)['likes'];
     reviews = (snapshot.data() as dynamic)['reviews'];
-
+    tag = (snapshot.data() as dynamic)['tag'];
 
   }
 }

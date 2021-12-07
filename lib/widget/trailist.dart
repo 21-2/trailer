@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:trailer/model/Trailist.dart';
 import 'package:get/get.dart';
 
 class TrailistCard extends StatefulWidget {
+  final Trailist? result;
+
+  TrailistCard({required this.result});
+
   @override
-  _TrailistCard createState() => _TrailistCard();
+  _TrailistCard createState() => _TrailistCard(result: result);
 }
 
 class _TrailistCard extends State<TrailistCard> {
   var width = Get.context!.mediaQuerySize.width;
   var height = Get.context!.mediaQuerySize.height;
+
+  Trailist? result;
+  _TrailistCard({required this.result});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -20,7 +29,7 @@ class _TrailistCard extends State<TrailistCard> {
               ClipRRect(
                   borderRadius: BorderRadius.circular(8),
                   child: Image(
-                      image: AssetImage('lib/images/trailist-card-1.png'),
+                      image: NetworkImage(result!.trailistCover!),
                       width: width * 0.9,
                       height: height * 0.2,
                       fit: BoxFit.cover)),
@@ -30,7 +39,7 @@ class _TrailistCard extends State<TrailistCard> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(height: height * 0.02),
-                    Text("이스케이프 풀 빌라",
+                    Text(result!.trailistName!,
                         style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 15,
@@ -40,7 +49,8 @@ class _TrailistCard extends State<TrailistCard> {
                       children: [
                         Icon(Icons.person, color: Colors.white, size: 12),
                         SizedBox(width: width * 0.01),
-                        Text('gracenho829',
+                        //누구를 기준으로 표시할 것인지? --> 오너가 누구인지!
+                        Text(result!.participants![0],
                             style: TextStyle(
                                 fontWeight: FontWeight.w300,
                                 fontSize: 12,
@@ -52,7 +62,8 @@ class _TrailistCard extends State<TrailistCard> {
                       children: [
                         Icon(Icons.location_on, color: Colors.white, size: 12),
                         SizedBox(width: width * 0.01),
-                        Text('6곳',
+                        //Trailist 안에 개수 몇 개인지
+                        Text(result!.locations!.length.toString(),
                             style: TextStyle(
                                 fontWeight: FontWeight.w300,
                                 fontSize: 12,
